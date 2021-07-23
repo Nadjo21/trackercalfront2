@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+ul.menu {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.4em;
+  justify-content: center;
+}
+
+ul.menu li {
+  padding: 10px 20px;
+  color: white;
+}
+
+ul.menu li:hover {
+  cursor: pointer;
+}
