@@ -4,29 +4,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CalculimcComponent } from './calculimc/calculimc.component';
 import { FooddiaryComponent } from './fooddiary/fooddiary.component';
-import { PeseeComponent } from './weightmeas/pesee.component';
+import { WeightmeasComponent } from './weightmeas/weightmeas.component';
 import { ProgressComponent } from './progress/progress.component';
 import { DataupdateComponent } from './dataupdate/dataupdate.component';
 import {RouterModule} from "@angular/router";
 import { WelcomepageComponent } from './welcomepage/welcomepage.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     CalculimcComponent,
     FooddiaryComponent,
-    PeseeComponent,
+    WeightmeasComponent,
     ProgressComponent,
     DataupdateComponent,
     WelcomepageComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: WelcomepageComponent },
       { path: 'imc', component: CalculimcComponent},
       { path: 'diary', component: FooddiaryComponent },
-      { path: 'weight', component: PeseeComponent },
+      { path: 'weight', component: WeightmeasComponent },
       { path: 'progress', component: ProgressComponent },
       { path: 'data', component: DataupdateComponent },
     ])
