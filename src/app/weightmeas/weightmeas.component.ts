@@ -18,11 +18,13 @@ export class WeightmeasComponent implements OnInit {
 
   // Je crée mon objet JS qui représente le formulaire d'édition de l'enregistrement de mes données
   weightForm = this.formBuilder.group({
-    // date: '',
     weight: '',
+  measurementDate:'',
+
   });
 
   private weight: any;
+  private measurementDate: any |'dd/MM/yyyy';
 
     constructor(private formBuilder: FormBuilder, private api:ApiService) { }
 
@@ -36,10 +38,13 @@ console.log("test click)");
   //je recupere les données du formulaire
 
 
-// Je créer un objet Weight pour pouvoir le sauvegarder dans la base
+// Je créer un objet Weight  pour pouvoir sauvegarder les données saisies dans le formulaire dans la base
 
-    // TODO trouver une solution pour resussir a inserer la date au bon format
-    this.weight = {id: null,  weight : this.weight = this.weightForm.get('weight')?.value };
+    // TODO trouver une solution pour reussir a inserer la date au bon format
+    this.weight = {id: null,
+                   weight : this.weight = this.weightForm.get('weight')?.value,
+                   measurementDate : this.measurementDate =this.weightForm.get('measurementDate')?.value};
+
 
 
     //j'appelle l'API :
