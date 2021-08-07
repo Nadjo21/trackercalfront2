@@ -1,1 +1,69 @@
-<p>dataupdate works!</p>
+<!--tableau pour obtenir la liste des aliments-->
+
+<!--<Section id="boutonselection"  >-->
+<!--  <button id="listFood()" type="click">Consulter la liste des aliments</button>-->
+<!--  <button id="addFood()"  type="click">Ajouter un aliment</button>  -->
+<!--</Section>-->
+
+
+
+<!--formulaire pour ajouter  un aliment-->
+
+<Section id="ajouteraliments">
+  <form [formGroup]="foodForm" (ngSubmit)="foodSave()">
+
+    <label for="food-name">Nom </label>
+    <input type="text" id="food-name" formControlName="name" >
+
+    <label for="food-quantity">Quantité </label>
+    <input type="number" id="food-quantity"  formControlName="quantity">
+
+    <label for="food-type">Type </label>
+    <input type="text" id="food-type"  formControlName="type">
+
+    <label for="food-cal">Calories </label>
+    <input type="text" id="food-cal"  formControlName="calories">
+
+    <button type="submit">Ajouter à la liste des aliments</button>
+
+  </form>
+
+
+
+
+<table id ="listealiments">
+
+  <thead>
+  <tr>
+    <td>Id</td>
+    <td>Nom</td>
+    <td>Quantité</td>
+    <td>Type</td>
+    <td>Calories</td>
+  </tr>
+  </thead>
+
+<tbody>
+<!-- ngFor : ajout d'une ligne dans le tableau pour chaque nouvel  aliment trouvé-->
+<tr *ngFor="let food of foodList | async">
+  <td>{{food.id}}</td>
+  <td>{{food.name}}</td>
+  <td>{{food.quantity}}</td>
+  <td>{{food.type}}</td>
+  <td>{{food.calories}}</td>
+
+  <td>
+    <button (click)="onFoodDelete(food.id)">Supprimer</button>
+  </td>
+</tr>
+</tbody>
+</table>
+
+</Section>
+
+
+
+
+
+
+

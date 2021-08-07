@@ -1,1 +1,28 @@
-<p>fooddiary works!</p>
+<!--formulaire pour saisir le détail de mes repas -->
+
+
+
+<Section id="journalalimentaire">
+  <form [formGroup]="foodDiaryForm" (ngSubmit)="foodDiarySave()">
+
+    <label for="diary-date">Date </label>
+    <input type="date" id="diary-date"  formControlName="diaryDate">
+
+   <label for="foodname">Aliment : </label>
+
+    <select id="food-select">
+      <option value="defaultchoice">Selectionner un aliment</option>
+      <option  *ngFor="let food of foodList | async" [value]="food.name">{{food.id}}----{{food.name}}</option>
+
+    </select>
+
+
+    <label for="food-quantity">Quantité </label>
+    <input type="number" id="food-quantity"  formControlName="quantity">
+
+<!--    <label for="food-unit">Unité </label>-->
+<!--    <input type="text" id="food-unit"  formControlName="unit">-->
+
+    <button type="submit">Ajouter </button>
+  </form>
+</Section>
