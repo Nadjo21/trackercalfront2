@@ -9,7 +9,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { DataupdateComponent } from './dataupdate/dataupdate.component';
 import {RouterModule} from "@angular/router";
 import { WelcomepageComponent } from './welcomepage/welcomepage.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
@@ -22,20 +22,21 @@ import {HttpClientModule} from "@angular/common/http";
     DataupdateComponent,
     WelcomepageComponent
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-      { path: '', component: WelcomepageComponent },
-      { path: 'imc', component: CalculimcComponent},
-      { path: 'diary', component: FooddiaryComponent },
-      { path: 'weight', component: WeightmeasComponent },
-      { path: 'progress', component: ProgressComponent },
-      { path: 'data', component: DataupdateComponent },
-    ])
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule.forRoot([
+            {path: '', component: WelcomepageComponent},
+            {path: 'imc', component: CalculimcComponent},
+            {path: 'diary', component: FooddiaryComponent},
+            {path: 'weight', component: WeightmeasComponent},
+            {path: 'progress', component: ProgressComponent},
+            {path: 'data', component: DataupdateComponent},
+        ]),
+        FormsModule
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
