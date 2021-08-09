@@ -8,13 +8,22 @@
     <input type="date" id="diary-date" formControlName="date">
 
     <label for="food-select">Aliment : </label>
-    <select formControlName="name">
+    <select formControlName="name" (change)="changeFood($event)" >
       <option value="selectedfood">Selectionner un aliment</option>
-      <option *ngFor="let food of foodList | async" [value]="food.name">{{food.id}}----{{food.name}}  </option>
+      <option *ngFor="let food of foodList | async" [value]="food.name">{{food.id}}---{{food.name}} </option>
     </select>
 
-    <label for="food-quantity">Quantité : </label>
-    <input type="number" id="food-quantity" formControlName="quantity">
+    <label for="food-quantity">Quantité :</label>
+    <input type="number" id="diary-quantity" formControlName="quantity">
+
+
+    <label for="food-cal">Calories : </label>
+    <select formControlName="calories">
+      <option value="selectedcal">---</option>
+      <option *ngFor="let food of foodList | async" [value]="food.calories">{{food.calories}} </option>
+    </select>
+
+
 
     <label for="type-select">Unité : </label>
     <select id="type-select">
@@ -27,25 +36,31 @@
   </form>
 </Section>
 <Section *ngIf="foodintake">
+<!--<Section *ngFor="let food of foodintake.foodList>-->
   <table>
     <thead>
     <tr>
-      <th>Date</th>
-      <th>Aliment consommé</th>
-      <th>Quantité</th>
-      <th>Calories</th>
+      <th>Date:</th>
+      <th>Aliment consommé:</th>
+      <th>ID de l'aliment:</th>
+      <th>Quantité:</th>
+      <th>Calories:</th>
+      <th>Total :</th>
     </tr>
     </thead>
     <tbody>
-    <tr >
+    <tr>
       <td>{{foodintake.date | date : 'ddMMyyyy' }} </td>
+      <td>{{foodintake.name}}</td>
       <td>{{foodintake.name}}</td>
       <td>{{foodintake.quantity}}</td>
       <td>{{foodintake.calories}}</td>
+      <td>{{subtotal}}</td>
     </tr>
 
     </tbody>
   </table>
+  <button (click)="foodDiarySave()">Sauvegarder</button>
 </Section>
 
 

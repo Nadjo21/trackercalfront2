@@ -27,7 +27,12 @@ export class ApiService {
 
 //Methode pour récupérer la liste des aliments
   getFoodList() {
-    return this.http.get<Food[]>(this.baseApiUrl + 'api/food')
+       return this.http.get<Food[]>(this.baseApiUrl + 'api/food')
+  }
+
+  //Methode pour récupérer un aliment par son ID ( pour utilisation dans le fomualire de saisie des repas)
+  getFoodById(Foodid: number | undefined) {
+    return this.http.get<Food[]>(this.baseApiUrl + 'api/food' + Foodid)
   }
 
   //Methode pour supprimer un aliment

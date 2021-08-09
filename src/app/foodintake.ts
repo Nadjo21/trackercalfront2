@@ -1,3 +1,5 @@
+import {Food} from "./food";
+
 export interface Foodintake{
   id: number;
   date: Date;
@@ -5,4 +7,5 @@ export interface Foodintake{
   quantity: number;
   type:string;
   calories:number;
+  foodList: Food[];
 }
