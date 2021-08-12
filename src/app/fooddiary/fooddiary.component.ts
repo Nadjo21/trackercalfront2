@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {Foodintake} from "../foodintake";
 import {ApiService} from "../api.service";
 import {Food} from '../food';
-import {parseJson} from "@angular/cli/utilities/json-file";
 
 
 @Component({
@@ -14,28 +13,26 @@ import {parseJson} from "@angular/cli/utilities/json-file";
 export class FooddiaryComponent implements OnInit {
   foodDiaryForm = this.formBuilder.group({
     date: '',
-    fooddetails: '',
+    fooddetail: {},
     quantity: '',
-    type: '',
-    calories: '',
   });
 
-  //ici , foodlist correspond a ce que je récupere de l'API  :
+
+  //ici , foodlist correspond a toute la liste des aliments que  je récupère de l'API  :
   foodList = this.api.getFoodList();
+subtotal : any;
 
 
 
-  foodintake: any;
- private name: any;
-  private quantity: any;
-  private type: any;
-  private calories: any;
+  private food: Food | undefined;
+  private foodIntake: Foodintake | undefined;
+  selectedFoodList: Foodintake [] = [];
+
+  newFoodRow: any;
   private date: any;
-
-
-//je represente la selection de l'aliment dans le menu déroulant
-
- // private food :Food |undefined;
+   private name: any;
+  private quantity: any;
+  private calories: any;
 
 
   constructor(private formBuilder: FormBuilder, private api: ApiService) {
@@ -46,74 +43,78 @@ export class FooddiaryComponent implements OnInit {
 
   }
 
-//fonction cid essous pour reagir au changement de selection de l'aliment dans le menu deroulant:
+//fonction ci dessous pour reagir au changement de selection de l'aliment dans le menu deroulant:
+
+
   changeFood($event: Event) {
 
-    this.api.getFoodList().subscribe(()=>{
-
+    //je selectionne un aliment dans mon menu deroulant et je charge la liste de tous les aliments
+    this.api.getFoodList().subscribe(() => {
       console.log('test changement selection');
 
-      let food = this.foodDiaryForm.get('fooddetails' )?.value;
+      //je recupere le detail l'aliment selectionné
+      this.food = this.foodDiaryForm.get('fooddetail')?.value;
+      console.log("Detail de mon objet food selectionné" + " " + this.food);
 
 
-      console.log("détail de mon objet food selectionné" + food);
     })
 
-    // si je change l'aliment selectionné dans le menu deroulant, j'impacte les calories
-    //j'appelle l'APi pour recuperer le nombre de calories correspondant a ma selection
 
+  }
+
+
+  addfoodline() {
+    console.log(this.foodDiaryForm.get('fooddetail')?.value);
+
+    this.newFoodRow =
+      {
+        id: null,
+        date: this.foodDiaryForm.get('date')?.value,
+        quantity: this.foodDiaryForm.get('quantity')?.value,
+        food: this.foodDiaryForm.get('fooddetail')?.value,
+
+
+        // name: this.name = this.foodDiaryForm.get('fooddetail')?.value.name,
+        //
+        //  calories: this.calories = this.foodDiaryForm.get('fooddetail')?.value.calories,
+      }
+
+    console.log("test click bouton ajouter");
+
+//calcul total de calories par ligne d'aliments saisis //OK
+
+    this.subtotal = this.newFoodRow.quantity * this.newFoodRow.calories;
+
+    //pour ajouter une nouvelle ligne a chaque clic
+
+    this.selectedFoodList.push(this.newFoodRow);
 
   }
 
 
   foodDiarySave() {
 
-    // this.foodintake =
-    //
-    //   {
-    //     id: null,
-    //     name: this.name = this.foodDiaryForm.get('foodname')?.value,
-    //     date: this.date = this.foodDiaryForm.get('date')?.value,
-    //     quantity: this.quantity = this.foodDiaryForm.get('quantity')?.value,
-    //     type: this.type = this.foodDiaryForm.get('type')?.value,
-    //     calories: this.calories = this.foodDiaryForm.get('calories')?.value,
-    //   }
-    //
-    // console.log("test click bouton sauvegarder");
+
+    this.foodIntake = {
+      // @ts-ignore
+      id: null,
+      date: this.newFoodRow.date,
+      quantity: this.newFoodRow.quantity,
+      food_id: this.newFoodRow.name,
+    };
+
+
+    console.log("test click bouton sauvegarder");
+
+    //appel de l'API pour inserer les données dans la BDD
+
+    this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
+
+      console.log(this.foodIntake);
+    })
 
 
   }
-
-
-//TODO permettre l'ajout de plusieurs lignes et calculer les calories en focntion de la quantité renseignée
-  subtotal: any;
-
-
-  addfoodline() {
-
-
-    //this.food = this.foodDiaryForm.get('name')?.value;
-
-   this.foodintake =
-
-      {
-        id: null,
-        name: this.name = this.foodDiaryForm.get('name')?.value,
-        date: this.date = this.foodDiaryForm.get('date')?.value,
-        quantity: this.quantity = this.foodDiaryForm.get('quantity')?.value,
-        type: this.type = this.foodDiaryForm.get('type')?.value,
-        calories: this.calories = this.foodDiaryForm.get('calories')?.value,
-
-      }
-
-    console.log("test click bouton ajouter");
-
-//calcul total de calories par ligne d'aliments saisis //OK
-   this.subtotal = this.foodintake.quantity * this.foodintake.calories;
-
-
-  }
-
 
 
 }

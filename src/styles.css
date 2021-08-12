@@ -15,3 +15,6 @@ ul.menu li:hover {
   cursor: pointer;
 }
 
+table{
+  justify-content: center;
+}

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Weight} from "./weight";
 import{Food} from "./food";
+import {Foodintake} from "./foodintake";
+
+
 
 
 @Injectable({
@@ -31,8 +34,8 @@ export class ApiService {
   }
 
   //Methode pour récupérer un aliment par son ID ( pour utilisation dans le fomualire de saisie des repas)
-  getFoodById(Foodid: number | undefined) {
-    return this.http.get<Food[]>(this.baseApiUrl + 'api/food' + Foodid)
+  getFoodById(Foodid: number |undefined ) {
+    return this.http.get<Food[]>(this.baseApiUrl + 'api/food/' + Foodid)
   }
 
   //Methode pour supprimer un aliment
@@ -47,5 +50,11 @@ export class ApiService {
     return this.http.post(this.baseApiUrl + 'api/food',food);
   }
 
+
+  //Methode pour enregistrer les repas pris( foodIntake)
+
+  createFoodIntake(foodIntake: Foodintake | undefined){
+    return this.http.post(this.baseApiUrl+'api/foodintake',foodIntake);
+  }
 
 }
