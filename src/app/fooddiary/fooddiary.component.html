@@ -34,16 +34,17 @@
     </thead>
     <tbody>
     <tr *ngFor="let selectedFood of selectedFoodList">
-      <td>{{selectedFood.date | date : 'ddMMyyyy' }} </td>
+      <td>{{selectedFood.date  }} </td>
       <td>{{selectedFood.food.name}}</td>
       <td>{{selectedFood.quantity}}</td>
-      <td>{{subtotal}}</td>
+      <td>{{ (selectedFood.food.calories) * (selectedFood.quantity)}}</td>
     </tr>
 
     </tbody>
   </table>
 
   <button (click) ="foodDiarySave()">Sauvegarder</button>
+
 </Section>
 
 
