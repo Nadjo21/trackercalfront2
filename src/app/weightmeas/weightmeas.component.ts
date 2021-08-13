@@ -10,8 +10,6 @@ import {Weight} from "../weight";
 })
 export class WeightmeasComponent implements OnInit {
 
- // weightList = this.api.getWeightList();
-
 
   // Je crée mon objet JS qui représente le formulaire d'édition de l'enregistrement de mes données
   weightForm = this.formBuilder.group({
@@ -21,7 +19,7 @@ export class WeightmeasComponent implements OnInit {
   });
 
   private weight: any;
-  private measurementDate: any |'dd/MM/yyyy';
+  private measurementDate: any  ;
 
     constructor(private formBuilder: FormBuilder, private api:ApiService) { }
 
@@ -30,7 +28,7 @@ export class WeightmeasComponent implements OnInit {
   }
 
   weightSave() {
-console.log("test click)");
+
 
 
 
@@ -38,8 +36,11 @@ console.log("test click)");
 // Je créer un objet Weight  pour pouvoir sauvegarder les données saisies dans le formulaire dans la base
 
     this.weight = {id: null,
-                   weight : this.weight = this.weightForm.get('weight')?.value,
-                   measurementDate : this.measurementDate =this.weightForm.get('measurementDate')?.value};
+                   weight :  this.weightForm.get('weight')?.value,
+                   measurementDate :this.weightForm.get('measurementDate')?.value};
+
+
+    console.log("test click  : " + this.weight.measurementDate);
 
 
     //j'appelle l'API :

@@ -20,19 +20,9 @@ export class FooddiaryComponent implements OnInit {
 
   //ici , foodlist correspond a toute la liste des aliments que  je récupère de l'API  :
   foodList = this.api.getFoodList();
-//subtotal : any;
-
-
-
   private food: Food | undefined;
   private foodIntake: Foodintake | undefined;
   selectedFoodList: Foodintake [] = [];
-
-  // newFoodRow: any;
-  // private date: any;
-  //  private name: any;
-  // private quantity: any;
-  // private calories: any;
 
 
   constructor(private formBuilder: FormBuilder, private api: ApiService) {
@@ -44,7 +34,6 @@ export class FooddiaryComponent implements OnInit {
   }
 
 //fonction ci dessous pour reagir au changement de selection de l'aliment dans le menu deroulant:
-
 
   changeFood($event: Event) {
 
@@ -62,7 +51,8 @@ export class FooddiaryComponent implements OnInit {
   addfoodline() {
     console.log(this.foodDiaryForm.get('fooddetail')?.value);
 
-  //  this.newFoodRow =
+    //je crée un objet foodIntake -
+    // 1 foodIntake = ligne du tableau
 
     this.foodIntake =
       {
@@ -71,27 +61,15 @@ export class FooddiaryComponent implements OnInit {
         date: this.foodDiaryForm.get('date')?.value,
         quantity: this.foodDiaryForm.get('quantity')?.value,
         food: this.foodDiaryForm.get('fooddetail')?.value,
-
-
-       // name: this.name = this.foodDiaryForm.get('fooddetail')?.value.name,
-        //
-        //  calories: this.calories = this.foodDiaryForm.get('fooddetail')?.value.calories,
       }
 
     console.log("test click bouton ajouter");
 
-//calcul total de calories par ligne d'aliments saisis //OK
+    //j'ajoute une nouvelle ligne à chaque clic ( + *ngFor côté HTML) :
 
- //   this.subtotal = this.newFoodRow.quantity * this.newFoodRow.calories;
-//console.log("ceci est mon subtotal  :" +this.subtotal)
-
-    //pour ajouter une nouvelle ligne a chaque clic
-
-
-
-    //this.selectedFoodList.push(this.newFoodRow);
     if (this.foodIntake) {
       this.selectedFoodList.push(this.foodIntake);
+
     }
 
   }
@@ -99,25 +77,15 @@ export class FooddiaryComponent implements OnInit {
 
   foodDiarySave() {
 
-    //
-    // this.foodIntake = {
-    //   // @ts-ignore
-    //   id: null,
-    //   date: this.newFoodRow.date,
-    //   quantity: this.newFoodRow.quantity,
-    //   food_id: this.newFoodRow.name,
-    // };
+    console.log("test click bouton sauvegarder  "+ this.selectedFoodList);
 
+    //appel api pour insertion BDD
 
-    console.log("test click bouton sauvegarder");
+      this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
 
-    //appel de l'API pour inserer les données dans la BDD
+        console.log(this.foodIntake);
 
-    this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
-
-      console.log(this.foodIntake);
-    })
-
+      })
 
 
   }

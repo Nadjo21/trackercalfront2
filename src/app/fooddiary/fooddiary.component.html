@@ -7,7 +7,7 @@
     <input type="date" id="diary-date" formControlName="date">
 
     <label for="food-select">Aliment : </label>
-    <select formControlName="fooddetail" (change)="changeFood($event)" >
+    <select  formControlName="fooddetail" (change)="changeFood($event)" >
       <option value="selectedfood">Selectionner un aliment</option>
       <option *ngFor="let food of foodList | async" [ngValue]="food">{{food.id}}---{{food.name}} </option>
     </select>
@@ -22,7 +22,7 @@
 
 <Section >
 
-  <table>
+  <table class="table">
     <thead>
     <tr>
       <th>Date:</th>
@@ -43,7 +43,7 @@
     </tbody>
   </table>
 
-  <button (click) ="foodDiarySave()">Sauvegarder</button>
+  <button  (click)  ="foodDiarySave()" >Sauvegarder</button>
 
 </Section>
 

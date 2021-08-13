@@ -19,7 +19,7 @@ export class ApiService {
 
 // Méthode pour enregistrer une saisie "poids/date"
   createWeight(weight: Weight) {
-    return this.http.post(this.baseApiUrl + 'api/weightmeasurement',weight);
+    return this.http.post(this.baseApiUrl + 'api/weightmeasurement',weight );
   }
 
 //Methode pour récupérer l'historique des saisies " poids/date"

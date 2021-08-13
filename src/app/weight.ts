@@ -1,6 +1,6 @@
 export interface Weight {
   id: number;
-  measurementDate: Date ;
+  measurementDate: Date;
   weight: number;
 
 }
