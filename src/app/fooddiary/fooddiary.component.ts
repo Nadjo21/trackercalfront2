@@ -25,6 +25,7 @@ export class FooddiaryComponent implements OnInit {
   selectedFoodList: Foodintake [] = [];
 
 
+
   constructor(private formBuilder: FormBuilder, private api: ApiService) {
   }
 
@@ -34,6 +35,7 @@ export class FooddiaryComponent implements OnInit {
   }
 
 //fonction ci dessous pour reagir au changement de selection de l'aliment dans le menu deroulant:
+
 
   changeFood($event: Event) {
 
@@ -74,18 +76,24 @@ export class FooddiaryComponent implements OnInit {
 
   }
 
-
   foodDiarySave() {
+// pour enregistrer toutes les données de mon tableau en une seule fois , je fais une boucle
+// sur selectedFoodList - je transforme ensuite chaque [i] en foodIntake avant appel a l'API
 
-    console.log("test click bouton sauvegarder  "+ this.selectedFoodList);
+    for (let i = 0; i < this.selectedFoodList.length; i++) {
+      console.log(this.selectedFoodList[i]);
+      this.foodIntake = this.selectedFoodList[i];
+      //appel api pour insertion BDD
+       this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
+         console.log(this.foodIntake);
 
-    //appel api pour insertion BDD
 
-      this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
+       })
 
-        console.log(this.foodIntake);
+    }
 
-      })
+
+
 
 
   }
