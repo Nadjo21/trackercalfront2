@@ -21,6 +21,10 @@ export class WeightmeasComponent implements OnInit {
   private weight: any;
   private measurementDate: any  ;
 
+
+  //je declare le displayresult par defaut a false , afin de generer l'affichage du resultat au clic du bouton
+  displayconfirmation = false;
+
     constructor(private formBuilder: FormBuilder, private api:ApiService) { }
 
   ngOnInit(): void {
@@ -49,6 +53,7 @@ export class WeightmeasComponent implements OnInit {
 
     console.log(this.weight);
 
+    this.displayconfirmation =true;
 
   })
 

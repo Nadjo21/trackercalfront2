@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { CalculimcComponent } from './calculimc/calculimc.component';
 import { FooddiaryComponent } from './fooddiary/fooddiary.component';
@@ -11,6 +10,13 @@ import {RouterModule} from "@angular/router";
 import { WelcomepageComponent } from './welcomepage/welcomepage.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -24,8 +30,10 @@ import {HttpClientModule} from "@angular/common/http";
   ],
     imports: [
         BrowserModule,
-        ReactiveFormsModule,
+      ReactiveFormsModule,
         HttpClientModule,
+
+
         RouterModule.forRoot([
             {path: '', component: WelcomepageComponent},
             {path: 'imc', component: CalculimcComponent},

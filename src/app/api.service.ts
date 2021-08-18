@@ -57,4 +57,11 @@ export class ApiService {
     return this.http.post(this.baseApiUrl+'api/foodintake',foodIntake);
   }
 
+  //recuperer la liste des foodIntake
+
+  getFoodIntakeList() {
+    return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake')
+  }
+
+
 }

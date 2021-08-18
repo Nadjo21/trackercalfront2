@@ -1,1 +1,31 @@
-<p>progress works!</p>
+
+<Section id="selection">
+      <button type="submit">Historique des repas</button>
+
+  <form [formGroup]="foodtaken" (ngSubmit)="selecteddate()" >
+    <label for="food-taken">Date: </label>
+    <input type="date" id="food-taken" formControlName="date">
+    <button type="submit"> Valider</button>
+  </form>
+
+  <table >
+    <thead>
+    <tr>
+      <th>Date:</th>
+      <th>Aliment consommé:</th>
+      <th>Quantité:</th>
+      <th>Calories:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let foodintake of foodIntakeList | async">
+      <td>{{Foodintake.date  }} </td>
+      <td>{{Foodintake.food.id}}</td>
+      <td>{{Foodintake.quantity}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+
+      <button type="submit">Mon évolution de poids  </button>
+</Section>

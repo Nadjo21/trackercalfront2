@@ -24,14 +24,14 @@
     <label for="food-cal">Calories </label>
     <input type="text" id="food-cal"  formControlName="calories">
 
-    <button type="submit">Ajouter à la liste des aliments</button>
+    <button type="submit" class="btn btn-success btn-sm">Ajouter</button>
 
   </form>
 
 
 
 
-<table id ="listealiments" class="table">
+<table id ="listealiments" class="table table-striped">
 
   <thead>
   <tr>
@@ -53,7 +53,7 @@
   <td>{{food.calories}}</td>
 
   <td>
-    <button (click)="onFoodDelete(food.id)">Supprimer</button>
+    <button (click)="onFoodDelete(food.id)" class="btn btn-danger btn-sm"> Supprimer  </button >
   </td>
 </tr>
 </tbody>
