@@ -2,7 +2,7 @@
 <Section id="selection">
       <button (click)="clicHistorique()">Historique des repas</button>
 
-  <form [formGroup]="foodTaken" (ngSubmit)="selecteddate()" *ngIf="editForm" >
+  <form [formGroup]="foodTakenForm" (ngSubmit)="selecteddate(date)" *ngIf="editForm" >
     <label for="food-taken">Date: </label>
     <input type="date" id="food-taken" formControlName="date" [value]="date" >
  <button type="submit"> Valider</button>
@@ -18,10 +18,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let foodIntake of foodIntakeList | async ">
-      <td>{{foodIntake.date}} </td>
-      <td>{{foodIntake.food.name}}</td>
-      <td>{{foodIntake.quantity}}</td>
+    <tr *ngFor="let filterFoodIntake of foodIntakeList | async ">
+      <td>{{filterFoodIntake.date}} </td>
+      <td>{{filterFoodIntake.food.name}}</td>
+      <td>{{filterFoodIntake.quantity}}</td>
     </tr>
 
     </tbody>

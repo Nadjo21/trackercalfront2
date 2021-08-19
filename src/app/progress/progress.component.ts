@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../api.service";
 import {FormBuilder} from "@angular/forms";
 import {Foodintake} from "../foodintake";
+import {filter} from "rxjs/operators";
 
 
 @Component({
@@ -10,22 +11,24 @@ import {Foodintake} from "../foodintake";
   styleUrls: ['./progress.component.css']
 })
 
+
+
 export class ProgressComponent implements OnInit {
-
-
-  foodIntakeList = this.api.getFoodIntakeList();
-   foodTaken = this.formBuilder.group({
+//detail formulaire
+  foodTakenForm = this.formBuilder.group({
     date:'',
       });
 
+  //pour ngIf et clic event
    editForm = false;
    editTable = false;
 
 
-  private foodIntake: Foodintake | undefined;
-  date: any;
+ // private foodIntake: Foodintake | undefined;
+  date: any |undefined;
+  foodIntakeList = this.api.getFoodIntakeList();
 
-
+  private filterFoodIntake :Foodintake [] | undefined;
 
   constructor(private api:ApiService,private formBuilder: FormBuilder) {
   }
@@ -39,21 +42,18 @@ export class ProgressComponent implements OnInit {
   }
 
 
-  selecteddate() {
-
+  selecteddate(date : any) {
+    this.date=this.foodTakenForm.get("date")?.value;
     let foodIntakeList = this.api.getFoodIntakeList().subscribe(()=>{
-      console.log("clic bouton  ");
-
-
-
-
+     //let filterFoodIntake = this.foodIntakeList.pipe(filter(this.date));
+      console.log("clic bouton  " + this.date);
       //j'affiche le tableau
       this.editTable=true;
 
 
     });
 
-
-
   }
+
+
 }
