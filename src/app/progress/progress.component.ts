@@ -9,18 +9,21 @@ import {Foodintake} from "../foodintake";
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.css']
 })
+
 export class ProgressComponent implements OnInit {
-  // Je crée mon objet JS qui représente le formulaire d'édition de l'enregistrement de mes données
-  foodtaken = this.formBuilder.group({
-    date: '',
+
+
+  foodIntakeList = this.api.getFoodIntakeList();
+   foodTaken = this.formBuilder.group({
+    date:'',
       });
 
+   editForm = false;
+   editTable = false;
 
 
-  Foodintake: any;
-
-  foodIntakeList: any;
-
+  private foodIntake: Foodintake | undefined;
+  date: any;
 
 
 
@@ -29,17 +32,28 @@ export class ProgressComponent implements OnInit {
 
   ngOnInit(): void {
 
-     this.foodIntakeList = this.api.getFoodIntakeList();
+  }
+
+  clicHistorique() {
+    this.editForm = true;
   }
 
 
   selecteddate() {
 
-    //j'appelle l'API :
-    this.foodIntakeList = this.api.getFoodIntakeList().subscribe(()=>{
-      console.log(this.foodIntakeList);
+    let foodIntakeList = this.api.getFoodIntakeList().subscribe(()=>{
+      console.log("clic bouton  ");
+
+
+
+
+      //j'affiche le tableau
+      this.editTable=true;
+
 
     });
+
+
 
   }
 }
