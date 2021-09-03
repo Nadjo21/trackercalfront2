@@ -2,12 +2,17 @@
 
 
 <Section id="journalalimentaire">
-   <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()" >
+  <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()">
+    <div>
+
+      <button (click)="dayBefore()" class="btn btn-primary btn-sm">Précèdent</button>
     <label for="diary-date">Date: </label>
-    <input type="date" id="diary-date" formControlName="date">
+    <input type="date" id="diary-date" formControlName="date" >
+      <button (click)="dayAfter()" class="btn btn-primary btn-sm">Suivant</button>
+    </div>
 
     <label for="food-select">Aliment : </label>
-    <select  formControlName="fooddetail" (change)="changeFood($event)" >
+    <select formControlName="fooddetail" (change)="changeFood($event)">
       <option value="selectedfood">Selectionner un aliment</option>
       <option *ngFor="let food of foodList | async" [ngValue]="food">{{food.id}}---{{food.name}} </option>
     </select>
@@ -20,31 +25,33 @@
   </form>
 </Section>
 
-<Section >
+<Section>
 
-  <table class="table table-striped">
+  <table class="table table-striped"  class="w-50">
     <thead>
     <tr>
       <th>Date:</th>
-       <th>Aliment consommé:</th>
+      <th>Aliment consommé:</th>
       <th>Quantité:</th>
       <th>Calories:</th>
 
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let selectedFood of selectedFoodList"  >
-      <td>{{selectedFood.date  }} </td>
+    <tr *ngFor="let selectedFood of selectedFoodList">
+      <td>{{selectedFood.date |date : 'dd/MM/yyyy' }}  </td>
       <td>{{selectedFood.food.name}}</td>
       <td>{{selectedFood.quantity}}</td>
-      <td>{{ (selectedFood.food.calories) * (selectedFood.quantity)}}</td>
+      <td>{{(selectedFood.food.calories) * (selectedFood.quantity)}}</td>
     </tr>
-
+    <td></td>
+    <td></td>
+    <td>Total :</td>
+    <td>{{totalCalories}}</td>
     </tbody>
   </table>
 
-  <button  (click)  ="foodDiarySave()" class="btn btn-primary btn-sm">Sauvegarder</button>
-
+  <button (click)="foodDiarySave()" class="btn btn-primary btn-sm">Sauvegarder</button>
 </Section>
 
 

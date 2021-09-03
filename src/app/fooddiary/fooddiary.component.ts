@@ -24,6 +24,9 @@ export class FooddiaryComponent implements OnInit {
   private foodIntake: Foodintake | undefined;
   selectedFoodList: Foodintake [] = [];
 
+  subtotal: number | undefined;
+  totalCalories=0;
+  private selectedFood: any;
 
 
   constructor(private formBuilder: FormBuilder, private api: ApiService) {
@@ -72,10 +75,13 @@ export class FooddiaryComponent implements OnInit {
     if (this.foodIntake) {
       this.selectedFoodList.push(this.foodIntake);
 
+      //je calcule au fur et a mesure le total des calories en récupérant les valeurs de la cellule
+      // @ts-ignore
+     this.totalCalories = this.totalCalories +(this.foodIntake.quantity * this.foodIntake.food.calories);
+     console.log("test "+ this.totalCalories);
     }
 
   }
-
   foodDiarySave() {
 // pour enregistrer toutes les données de mon tableau en une seule fois , je fais une boucle
 // sur selectedFoodList - je transforme ensuite chaque [i] en foodIntake avant appel a l'API
@@ -84,19 +90,19 @@ export class FooddiaryComponent implements OnInit {
       console.log(this.selectedFoodList[i]);
       this.foodIntake = this.selectedFoodList[i];
       //appel api pour insertion BDD
-       this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
-         console.log(this.foodIntake);
-
-
-       })
+      this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
+        console.log(this.foodIntake);
+      })
 
     }
 
+  }
 
-
-
+  dayBefore() {
 
   }
 
+  dayAfter() {
 
+  }
 }

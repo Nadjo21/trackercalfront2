@@ -17,4 +17,34 @@ ul.menu li:hover {
 
 table{
   justify-content: center;
+  margin : auto;
+
+}
+
+
+
+h1, h2, h3 {
+  text-align: center;
+}
+section{
+  text-align: center;
+}
+table {
+  margin: auto;
+  border-width:2px;
+  border-style:solid;
+  border-color:black;
+}
+th {
+  border-bottom:solid black;
+    width :auto;
+}
+img{
+  margin-left: auto;
+  margin-right: auto;
+  width: 6em;
+}
+button {
+  margin : 10px;
+  text-decoration :none;
 }

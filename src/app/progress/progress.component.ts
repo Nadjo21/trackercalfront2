@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../api.service";
 import {FormBuilder} from "@angular/forms";
 import {Foodintake} from "../foodintake";
-import {filter} from "rxjs/operators";
+
 
 
 @Component({
@@ -10,8 +10,6 @@ import {filter} from "rxjs/operators";
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.css']
 })
-
-
 
 export class ProgressComponent implements OnInit {
 //detail formulaire
@@ -23,12 +21,12 @@ export class ProgressComponent implements OnInit {
    editForm = false;
    editTable = false;
 
-
  // private foodIntake: Foodintake | undefined;
   date: any |undefined;
-  foodIntakeList = this.api.getFoodIntakeList();
+  // @ts-ignore
+  foodIntakeFoundByDate = this.api.getFoodIntakeByDate(this.date);
 
-  private filterFoodIntake :Foodintake [] | undefined;
+ private foodIntake :Foodintake [] | undefined;
 
   constructor(private api:ApiService,private formBuilder: FormBuilder) {
   }
@@ -41,19 +39,17 @@ export class ProgressComponent implements OnInit {
     this.editForm = true;
   }
 
-
-  selecteddate(date : any) {
+  selecteddate(Date : number) {
     this.date=this.foodTakenForm.get("date")?.value;
-    let foodIntakeList = this.api.getFoodIntakeList().subscribe(()=>{
-     //let filterFoodIntake = this.foodIntakeList.pipe(filter(this.date));
+    let foodIntakeFoundbyDate = this.api.getFoodIntakeByDate(this.date).subscribe(()=>{
       console.log("clic bouton  " + this.date);
+
+
       //j'affiche le tableau
       this.editTable=true;
-
 
     });
 
   }
-
 
 }

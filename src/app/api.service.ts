@@ -6,7 +6,6 @@ import {Foodintake} from "./foodintake";
 
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -63,5 +62,10 @@ export class ApiService {
     return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake')
   }
 
+  //recuperer les foodintake en fonction de la date
+
+  getFoodIntakeByDate(FoodIntakeDate: Date |undefined ) {
+    return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/?foodIntakedate=' + FoodIntakeDate)
+  }
 
 }
