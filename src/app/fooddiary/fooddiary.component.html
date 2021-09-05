@@ -4,11 +4,10 @@
 <Section id="journalalimentaire">
   <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()">
     <div>
-
-      <button (click)="dayBefore()" class="btn btn-primary btn-sm">Précèdent</button>
+      <button type="button" (click)="addDay(-1)" class="btn btn-primary btn-sm">Précédent</button>
     <label for="diary-date">Date: </label>
-    <input type="date" id="diary-date" formControlName="date" >
-      <button (click)="dayAfter()" class="btn btn-primary btn-sm">Suivant</button>
+    <input type="date" id="diary-date"  value="2021/09/05" formControlName="date"  >
+      <button type="button" (click)="addDay(+1)" class="btn btn-primary btn-sm">Suivant</button>
     </div>
 
     <label for="food-select">Aliment : </label>
@@ -20,13 +19,11 @@
     <label for="food-quantity">Quantité :</label>
     <input type="number" id="diary-quantity" formControlName="quantity">
 
-
     <button type="submit" class="btn btn-success btn-sm">Ajouter</button>
   </form>
 </Section>
 
 <Section>
-
   <table class="table table-striped"  class="w-50">
     <thead>
     <tr>
@@ -34,7 +31,6 @@
       <th>Aliment consommé:</th>
       <th>Quantité:</th>
       <th>Calories:</th>
-
     </tr>
     </thead>
     <tbody>
@@ -53,6 +49,4 @@
 
   <button (click)="foodDiarySave()" class="btn btn-primary btn-sm">Sauvegarder</button>
 </Section>
-
-
 

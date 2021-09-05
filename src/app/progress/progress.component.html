@@ -1,31 +1,31 @@
+<!--<Section id="selection">-->
+<!--  <button (click)="clicHistorique()">Historique des repas</button>-->
 
-<Section id="selection">
-      <button (click)="clicHistorique()">Historique des repas</button>
+<!--  <form [formGroup]="foodTakenForm" (ngSubmit)="selecteddate()" *ngIf="editForm" >-->
 
-  <form [formGroup]="foodTakenForm" (ngSubmit)="selecteddate(date)" *ngIf="editForm" >
+<!--    <label for="food-taken">Date: </label>-->
+<!--    <input type="date" id="food-taken" formControlName="date" [value]="date" >-->
 
-    <label for="food-taken">Date: </label>
-    <input type="date" id="food-taken" formControlName="date" [value]="date" >
+<!--    <button type="submit"> Valider</button>-->
+<!--  </form>-->
 
- <button type="submit"> Valider</button>
-  </form>
+<!--  <table *ngIf="editTable"  >-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>Date:</th>-->
+<!--      <th>Aliment consommé:</th>-->
+<!--      <th>Quantité:</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr *ngFor="let foodIntake of foodIntakeFoundByDate | async ">-->
+<!--      <td>{{foodIntake.date |date : 'dd/MM/yyyy'}} </td>-->
+<!--      <td>{{foodIntake.food.name}}</td>-->
+<!--      <td>{{foodIntake.quantity}}</td>-->
+<!--    </tr>-->
 
-  <table *ngIf="editTable"  >
-    <thead>
-    <tr>
-      <th>Date:</th>
-      <th>Aliment consommé:</th>
-      <th>Quantité:</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let foodIntake of foodIntakeFoundByDate | async ">
-      <td>{{foodIntake.date |date : 'dd/MM/yyyy'}} </td>
-      <td>{{foodIntake.food.name}}</td>
-      <td>{{foodIntake.quantity}}</td>
-    </tr>
+<!--    </tbody>-->
+<!--  </table>-->
+<!--  <button type="submit">Mon évolution de poids </button>-->
+<!--</Section>-->
 
-    </tbody>
-  </table>
-      <button type="submit">Mon évolution de poids </button>
-</Section>

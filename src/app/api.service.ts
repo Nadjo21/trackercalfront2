@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Weight} from "./weight";
 import{Food} from "./food";
 import {Foodintake} from "./foodintake";
+import {Observable} from "rxjs";
 
 
 
@@ -43,12 +44,15 @@ export class ApiService {
     return this.http.delete<Food[]>(this.baseApiUrl + 'api/food/' + Foodid)
   }
 
-
   //methode pour ajouter un aliment
   createFood(food: Food) {
     return this.http.post(this.baseApiUrl + 'api/food',food);
   }
 
+  // Méthode pour mettre à jour un aliment
+  updateFood(food: Food ) {
+    return this.http.put(this.baseApiUrl + 'api/food', food);
+  }
 
   //Methode pour enregistrer les repas pris( foodIntake)
 
@@ -64,8 +68,8 @@ export class ApiService {
 
   //recuperer les foodintake en fonction de la date
 
-  getFoodIntakeByDate(FoodIntakeDate: Date |undefined ) {
-    return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/?foodIntakedate=' + FoodIntakeDate)
+  getFoodIntakeByDate(FoodIntakeDate: Date |undefined ) : Observable<Foodintake[]>{
+    return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydate?date=' + FoodIntakeDate)
   }
 
 }
