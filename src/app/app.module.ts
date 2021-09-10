@@ -12,7 +12,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ChartsModule} from "ng2-charts";
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +27,7 @@ import {ChartsModule} from "ng2-charts";
     ReactiveFormsModule,
     HttpClientModule,
     ChartsModule,
+
 
 
     RouterModule.forRoot([

@@ -3,12 +3,12 @@
 
 <Section id="journalalimentaire">
   <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()">
-    <div>
+<div>
       <button type="button" (click)="addDay(-1)" class="btn btn-primary btn-sm">Précédent</button>
     <label for="diary-date">Date: </label>
-    <input type="date" id="diary-date"  value="2021/09/05" formControlName="date"  >
+    <input type="date" id="diary-date"  formControlName="date" >
       <button type="button" (click)="addDay(+1)" class="btn btn-primary btn-sm">Suivant</button>
-    </div>
+</div>
 
     <label for="food-select">Aliment : </label>
     <select formControlName="fooddetail" (change)="changeFood($event)">
@@ -18,10 +18,10 @@
 
     <label for="food-quantity">Quantité :</label>
     <input type="number" id="diary-quantity" formControlName="quantity">
-
     <button type="submit" class="btn btn-success btn-sm">Ajouter</button>
   </form>
 </Section>
+
 
 <Section>
   <table class="table table-striped"  class="w-50">
@@ -34,19 +34,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let selectedFood of selectedFoodList">
-      <td>{{selectedFood.date |date : 'dd/MM/yyyy' }}  </td>
-      <td>{{selectedFood.food.name}}</td>
-      <td>{{selectedFood.quantity}}</td>
-      <td>{{(selectedFood.food.calories) * (selectedFood.quantity)}}</td>
+    <tr *ngFor="let selectedFood of selectedFoodList " >
+      <td>{{selectedFood?.date |date : 'dd/MM/yyyy' }}  </td>
+      <td>{{selectedFood?.food?.name}}</td>
+      <td>{{selectedFood?.quantity}}</td>
+<!--      <td>{{(selectedFood.food.calories) * (selectedFood.quantity)}}</td>-->
     </tr>
     <td></td>
     <td></td>
     <td>Total :</td>
-<!--    <td>{{totalCalories}}</td>-->
+    <td>{{totalCalories}}</td>
     </tbody>
   </table>
 
   <button (click)="foodDiarySave()" class="btn btn-primary btn-sm">Sauvegarder</button>
 </Section>
+
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {Foodintake} from "../foodintake";
 import {ApiService} from "../api.service";
 import {Food} from '../food';
@@ -10,7 +10,9 @@ import {Food} from '../food';
   styleUrls: ['./fooddiary.component.css']
 })
 export class FooddiaryComponent implements OnInit {
+
   foodDiaryForm = this.formBuilder.group({
+    // @ts-ignore
     date: '',
     fooddetail: '',
     quantity: '',
@@ -26,7 +28,6 @@ export class FooddiaryComponent implements OnInit {
 
   totalCalories = 0;
   private selectedFood: any;
-
   currentDate = new Date();
 
   //pour retrouver le détail d'un foodIntake sur une date selectionnée
@@ -38,19 +39,24 @@ export class FooddiaryComponent implements OnInit {
 
   private dateSelected: any;
 
-
   foodIntakeList = this.api.getFoodIntakeList();
 
   constructor(private formBuilder: FormBuilder, private api: ApiService) {
   }
 
-
   ngOnInit(): void {
-    console.log(this.currentDate);
 
+
+
+    console.log(this.currentDate);
+    //j'insere  la date du jour par defaut dans mon calendrier à l'affichage
+
+    // @ts-ignore
+    this.foodDiaryFormget('date').patchValue(this.currentDate(new Date()));
   }
 
 //fonction ci dessous pour reagir au changement de selection de l'aliment dans le menu deroulant:
+
 
 
   changeFood($event: Event) {
@@ -119,6 +125,8 @@ export class FooddiaryComponent implements OnInit {
   }
 
   addDay(daysIncrement: number) {
+
+
     //je recupere la date selectionnée dans le calendrier
     this.dateSelected = this.foodDiaryForm.get("date")?.value;
     console.log(this.dateSelected);

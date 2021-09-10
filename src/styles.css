@@ -48,3 +48,10 @@ button {
   margin : 10px;
   text-decoration :none;
 }
+
+canvas{
+  width: 500px;
+  height: 500px;
+
+
+}

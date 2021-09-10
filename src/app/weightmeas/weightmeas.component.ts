@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {ApiService} from "../api.service";
-import {Weight} from "../weight";
+
+import {ChartDataSets, ChartOptions} from "chart.js";
+import {Color, Label} from "ng2-charts";
 
 @Component({
   selector: 'app-pesee',
@@ -22,10 +24,49 @@ export class WeightmeasComponent implements OnInit {
   private measurementDate: any  ;
 
 
+
   //je declare le displayresult par defaut a false , afin de generer l'affichage du resultat au clic du bouton
   displayconfirmation = false;
 
-    constructor(private formBuilder: FormBuilder, private api:ApiService) { }
+
+
+  //ici code pour linechart
+
+//   myData = this.api.getWeightList().subscribe( result => {
+//     //je recupere le detail des foodintake trouvés dans le resultat
+//     console.log(result);
+// //je stocke le resultat
+//     let myData = result;
+//
+//   })
+
+
+
+
+  public lineChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Ma progression' },
+  ];
+
+
+
+
+  public lineChartLabels: Label[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet'];
+  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+    annotation: undefined,
+    responsive: true
+  };
+  public lineChartColors: Color[] = [
+    {
+      borderColor: 'black',
+      backgroundColor: 'pink',
+    },
+  ];
+  public lineChartLegend = true;
+  public lineChartType= 'line';
+  public lineChartPlugins = [];
+
+
+  constructor(private formBuilder: FormBuilder, private api:ApiService) { }
 
   ngOnInit(): void {
 
