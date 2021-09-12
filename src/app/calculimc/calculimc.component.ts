@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
+import {NgxSliderModule, Options} from '@angular-slider/ngx-slider';
+
 
 
 @Component({
@@ -23,10 +25,19 @@ export class CalculimcComponent implements OnInit {
 //je declare le displayresult par defaut a false , afin de generer l'affichage du resultat au clic du bouton
 displayResult = false;
 
+ value: number | any;
+   options: Options = {
+    showTicksValues: true,
+    stepsArray: [
+      { value: 16.5, legend: "Maigreur" },
+      { value: 18.5,legend:"Corpulence normale"},
+      { value: 25, legend: "Surpoids" },
+      { value: 30,legend: "Obésité modérée"},
+      { value: 35, legend: "Obésité Sévère" },
+      { value: 40, legend: " "},
 
-
-
-
+    ]
+  };
   constructor(private formBuilder: FormBuilder) {
   }
 
@@ -41,20 +52,16 @@ displayResult = false;
     this.weight = this.imcForm.get('weightF')?.value;
     this.Imc = this.weight / (this.height * this.height);
 
-
-
-
     // je passe le displayResult a true pour afficher la section de resultat côté HTML
      this.displayResult = true;
 
+//
 
+    this.value = this.Imc;
 
 
 
   }
-
-
-
 
 }
 

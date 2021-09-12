@@ -1,13 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {Foodintake} from "../foodintake";
 import {ApiService} from "../api.service";
 import {Food} from '../food';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-fooddiary',
   templateUrl: './fooddiary.component.html',
-  styleUrls: ['./fooddiary.component.css']
+  styleUrls: ['./fooddiary.component.css'],
+  providers: [DatePipe]
+
 })
 export class FooddiaryComponent implements OnInit {
 
@@ -30,9 +33,9 @@ export class FooddiaryComponent implements OnInit {
   private selectedFood: any;
   currentDate = new Date();
 
+
+
   //pour retrouver le détail d'un foodIntake sur une date selectionnée
-  //date: any |undefined;
-  //theDayBeforeDdate: any | undefined;
 
   // @ts-ignore
   foodIntakeFoundByDate = this.api.getFoodIntakeByDate(this.date);
@@ -41,22 +44,20 @@ export class FooddiaryComponent implements OnInit {
 
   foodIntakeList = this.api.getFoodIntakeList();
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService) {
+  constructor(private formBuilder: FormBuilder, private api: ApiService, public datepipe: DatePipe) {
   }
 
   ngOnInit(): void {
 
-
-
     console.log(this.currentDate);
     //j'insere  la date du jour par defaut dans mon calendrier à l'affichage
 
-    // @ts-ignore
-    this.foodDiaryFormget('date').patchValue(this.currentDate(new Date()));
+    //this.foodDiaryForm.get('date')?.patchValue(this.currentDate);
+    //this.foodDiaryForm.get('date')?.setValue(this.currentDate);
+
   }
 
 //fonction ci dessous pour reagir au changement de selection de l'aliment dans le menu deroulant:
-
 
 
   changeFood($event: Event) {
@@ -133,7 +134,16 @@ export class FooddiaryComponent implements OnInit {
 //j'ajoute ou je supprime un jour au clic du bouton pour naviguer dans le calendrier
     let previousOrFollowingDay = new Date(this.dateSelected);
     previousOrFollowingDay.setDate(previousOrFollowingDay.getDate() + daysIncrement);
-    console.log("hier " + previousOrFollowingDay);
+    console.log(previousOrFollowingDay);
+
+    //je change le format de la date recuperee et je l'insere dans le formulaire
+    // @ts-ignore
+    this.datepipe.transform(previousOrFollowingDay, 'yyyy-MM-dd');
+
+    this.foodDiaryForm.get('date')?.setValue(previousOrFollowingDay);
+    // this.foodDiaryForm.get('date')?.patchValue(previousOrFollowingDay);
+    console.log(previousOrFollowingDay);
+
 
     //j'appelle l'API pour recuperer la liste des foodIntake sur cette journée
 
@@ -145,12 +155,13 @@ export class FooddiaryComponent implements OnInit {
       this.foodIntake = result;
       console.log(this.foodIntake);
 
+
+
       // si je trouve un foodIntake dont la date concorde avec la date selectionnée , je l'ajoute a la liste et je l'affiche
       if (this.foodIntake) {
         this.selectedFoodList.push(this.foodIntake);
       }
       console.log(this.selectedFoodList);
-
 
     });
 

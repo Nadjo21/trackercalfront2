@@ -11,6 +11,8 @@ import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ChartsModule} from "ng2-charts";
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {ChartsModule} from "ng2-charts";
     ReactiveFormsModule,
     HttpClientModule,
     ChartsModule,
+    NgxSliderModule,
+
 
 
 

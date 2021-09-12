@@ -14,6 +14,9 @@
 <Section *ngIf="displayResult" id="progressBarIMC" >
 <h4 >Votre IMC est de : {{Imc | number}}</h4>
 
+  <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+
 </Section>
 
 
+<!---->
