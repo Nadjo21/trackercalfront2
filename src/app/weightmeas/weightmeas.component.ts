@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {ApiService} from "../api.service";
-
 import {ChartDataSets, ChartOptions} from "chart.js";
 import {Color, Label} from "ng2-charts";
+import {Weight} from "../weight";
 
 @Component({
   selector: 'app-pesee',
@@ -20,35 +20,70 @@ export class WeightmeasComponent implements OnInit {
 
   });
 
+
   private weight: any;
   private measurementDate: any  ;
+  private myData:any;
 
 
+   w : Weight | undefined;
+  myWeightData : Weight[] | undefined;
 
   //je declare le displayresult par defaut a false , afin de generer l'affichage du resultat au clic du bouton
   displayconfirmation = false;
 
 
-
   //ici code pour linechart
 
-//   myData = this.api.getWeightList().subscribe( result => {
-//     //je recupere le detail des foodintake trouvés dans le resultat
-//     console.log(result);
-// //je stocke le resultat
-//     let myData = result;
+//code initial
+//   public lineChartData: ChartDataSets[] = [
+//     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Ma progression' },
+//   ];
 //
-//   })
+//   public lineChartLabels: Label[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet'];
+//   public lineChartOptions: (ChartOptions & { annotation: any }) = {
+//     annotation: undefined,
+//     responsive: true
+//   };
+//   public lineChartColors: Color[] = [
+//     {
+//       borderColor: 'black',
+//       backgroundColor: 'yellow',
+//     },
+//   ];
+//   public lineChartLegend = true;
+//   public lineChartType= 'line';
+//   public lineChartPlugins = [];
 
 
+  //readaptation
 
+
+  myWeightList = this.api.getWeightList().subscribe( resultWeight => {
+    //je stocke le resultat de l'API
+    console.log(resultWeight);
+//je recupere le résultat
+    // @ts-ignore
+    this.w= this.resultWeight;
+    console.log(this.w);
+
+    //si presence d'un objet w, je l'ajoute a ma liste
+    if (this.w) {
+      // @ts-ignore
+      this.weightD.push(this.w);
+
+      //je recupere uniqument la colonne liste des poids
+      // @ts-ignore
+      this.myWeightData= this.w.weight;
+      console.log(this.myWeightData);
+    }
+  })
 
   public lineChartData: ChartDataSets[] = [
+
+    // @ts-ignore
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Ma progression' },
   ];
-
-
-
 
   public lineChartLabels: Label[] = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -57,8 +92,8 @@ export class WeightmeasComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     {
-      borderColor: 'black',
-      backgroundColor: 'pink',
+      borderColor: 'white',
+      backgroundColor: 'blue',
     },
   ];
   public lineChartLegend = true;
@@ -88,7 +123,7 @@ export class WeightmeasComponent implements OnInit {
     console.log("test click  : " + this.weight.measurementDate);
 
 
-    //j'appelle l'API :
+    //pour enregistrer un nouveau poids ,je consomme mon API :
 
   this.api.createWeight(this.weight).subscribe(weightcreate => {
 
