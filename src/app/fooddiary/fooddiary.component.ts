@@ -34,14 +34,11 @@ export class FooddiaryComponent implements OnInit {
   currentDate = new Date();
 
 
-
   //pour retrouver le détail d'un foodIntake sur une date selectionnée
-
   // @ts-ignore
   foodIntakeFoundByDate = this.api.getFoodIntakeByDate(this.date);
 
   private dateSelected: any;
-
   foodIntakeList = this.api.getFoodIntakeList();
 
   constructor(private formBuilder: FormBuilder, private api: ApiService, public datepipe: DatePipe) {

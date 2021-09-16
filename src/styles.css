@@ -4,24 +4,19 @@ ul.menu {
   flex-direction: row;
   font-size: 1.4em;
   justify-content: center;
+  font-family:"Calibri";
 }
 
 ul.menu li {
   padding: 10px 20px;
   color: white;
-}
-
-ul.menu li:hover {
   cursor: pointer;
 }
 
 table{
   justify-content: center;
   margin : auto;
-
 }
-
-
 
 h1, h2, h3 {
   text-align: center;
@@ -39,16 +34,23 @@ table {
 th {
   border-bottom:solid black;
     width :auto;
+
 }
-img{
-  margin-left: 500px;
-  margin-right: 500px;
-  width: 6em;
-}
+
+
+/*img{*/
+/*  margin-left: 500px;*/
+/*  margin-right: 500px;*/
+/*  width: 6em;*/
+/*}*/
+
+
 button {
   margin : 10px;
   text-decoration :none;
 }
 
-
+ul{
+  list-style: none;
+}
 

@@ -1,7 +1,7 @@
 <!--formulaire pour saisir le détail de mes repas -->
 
-<Section id="journalalimentaire">
-  <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()">
+<Section id="journalalimentaire" >
+  <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()" >
 <div>
       <button type="button" (click)="addDay(-1)" class="btn btn-primary btn-sm">Précédent</button>
     <label for="diary-date">Date: </label>
