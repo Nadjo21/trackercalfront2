@@ -15,7 +15,6 @@ import {DatePipe} from "@angular/common";
 export class FooddiaryComponent implements OnInit {
 
   foodDiaryForm = this.formBuilder.group({
-    // @ts-ignore
     date: '',
     fooddetail: '',
     quantity: '',
@@ -26,17 +25,15 @@ export class FooddiaryComponent implements OnInit {
   foodList = this.api.getFoodList();
   private food: Food | undefined;
   private foodIntake: Foodintake | undefined;
-  // @ts-ignore
   selectedFoodList: Foodintake [] = [];
-
   totalCalories = 0;
   private selectedFood: any;
   currentDate = new Date();
-
+  emptyFoodintakeList = false;
 
   //pour retrouver le détail d'un foodIntake sur une date selectionnée
   // @ts-ignore
-  foodIntakeFoundByDate = this.api.getFoodIntakeByDate(this.date);
+  // foodIntakeFoundByDate = this.api.getFoodIntakeByDate(this.date);
 
   private dateSelected: any;
   foodIntakeList = this.api.getFoodIntakeList();
@@ -47,10 +44,12 @@ export class FooddiaryComponent implements OnInit {
   ngOnInit(): void {
 
     console.log(this.currentDate);
-    //j'insere  la date du jour par defaut dans mon calendrier à l'affichage
-
-    //this.foodDiaryForm.get('date')?.patchValue(this.currentDate);
-    //this.foodDiaryForm.get('date')?.setValue(this.currentDate);
+    //etapes pour insertion date du jour par defaut dans mon calendrier à l'affichage
+    //je change le format de la date recuperee et je l'insere dans le formulaire
+    let dDay = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
+    console.log(dDay);
+    //j'insere la date au bon format dans le formulaire
+    this.foodDiaryForm.get('date')?.setValue(dDay);
 
   }
 
@@ -74,9 +73,7 @@ export class FooddiaryComponent implements OnInit {
 
   addfoodline() {
     console.log(this.foodDiaryForm.get('fooddetail')?.value);
-
-    //je crée un objet foodIntake -
-    // 1 foodIntake = 1 ligne du tableau
+    //je crée un objet foodIntake - // 1 foodIntake = 1 ligne du tableau
 
     this.foodIntake =
       {
@@ -118,12 +115,13 @@ export class FooddiaryComponent implements OnInit {
 
     //on vide le tableau apres avoir sauvegardé
     this.foodDiaryForm.reset();
-    //TODO vider egalement le contenu du tableau
 
+    //je vide en meme temps egalement le contenu du tableau
+    this.selectedFoodList.splice(0, this.selectedFoodList.length);
+    this.totalCalories = 0;
   }
 
   addDay(daysIncrement: number) {
-
 
     //je recupere la date selectionnée dans le calendrier
     this.dateSelected = this.foodDiaryForm.get("date")?.value;
@@ -134,34 +132,55 @@ export class FooddiaryComponent implements OnInit {
     console.log(previousOrFollowingDay);
 
     //je change le format de la date recuperee et je l'insere dans le formulaire
-    // @ts-ignore
-    this.datepipe.transform(previousOrFollowingDay, 'yyyy-MM-dd');
+    let moveDate = this.datepipe.transform(previousOrFollowingDay, 'yyyy-MM-dd');
+    console.log(moveDate);
+    this.foodDiaryForm.get('date')?.setValue(moveDate);
 
-    this.foodDiaryForm.get('date')?.setValue(previousOrFollowingDay);
-    // this.foodDiaryForm.get('date')?.patchValue(previousOrFollowingDay);
-    console.log(previousOrFollowingDay);
+    // console.log(previousOrFollowingDay);
 
 
     //j'appelle l'API pour recuperer la liste des foodIntake sur cette journée
 
+    //je recupere la date selectionnée dans le calendrier
+    this.dateSelected = this.foodDiaryForm.get("date")?.value;
+
     this.api.getFoodIntakeByDate(this.dateSelected).subscribe(result => {
-      //je recupere le detail des foodintake trouvés dans le resultat
-      console.log(result);
-//je stocke le resultat
-      // @ts-ignore
-      this.foodIntake = result;
-      console.log(this.foodIntake);
-
-
-
-      // si je trouve un foodIntake dont la date concorde avec la date selectionnée , je l'ajoute a la liste et je l'affiche
-      if (this.foodIntake) {
-        this.selectedFoodList.push(this.foodIntake);
-      }
+      //je recupere le detail des foodintake trouvés dans le resultat et je stocke le resultat
+      this.selectedFoodList = result;
       console.log(this.selectedFoodList);
+
+      // je reaffiche le total des calories pour cette journée en faisant une boucle sur la colone total
+
+      this.totalCalories = 0;
+      for (let i = 0; i < this.selectedFoodList.length; i++) {
+        // console.log(this.selectedFoodList[i]);
+        this.totalCalories += (this.selectedFoodList[i].food.calories) * (this.selectedFoodList[i].quantity);
+        console.log("subtotal " + this.totalCalories);
+
+      }
 
     });
 
+
   }
 
+  changeDate($event: Event) {
+
+    //je recupere la date selectionnée dans le calendrier
+    this.dateSelected = this.foodDiaryForm.get("date")?.value;
+
+    this.api.getFoodIntakeByDate(this.dateSelected).subscribe(result => {
+      //je recupere le detail du foodintake trouvé dans le resultat et je stocke le resultat
+      this.selectedFoodList = result;
+      console.log(this.selectedFoodList);
+      // si le resultat est vide , j'affiche un message
+      if (this.selectedFoodList === null) {
+        this.emptyFoodintakeList = true;
+        console.log("pas de repas enregistré pour cette journée")
+      }
+
+    });
+
+
+  }
 }

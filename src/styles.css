@@ -1,40 +1,69 @@
+#myCarousel {
 
-ul.menu {
-  display: flex;
-  flex-direction: row;
-  font-size: 1.4em;
-  justify-content: center;
-  font-family:"Calibri";
 }
 
-ul.menu li {
-  padding: 10px 20px;
+#mynavbar {
+  height: 100px;
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #e3f2fd;
+
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
   color: white;
-  cursor: pointer;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-table{
+/* changement de la couleur au passage de la souris*/
+li a:hover {
+  background-color: white;
+}
+
+
+.active {
+  background-color: #4CAF50;
+}
+
+
+table {
   justify-content: center;
-  margin : auto;
+  margin: auto;
 }
 
 h1, h2, h3 {
   text-align: center;
 }
-section{
+
+section {
   text-align: center;
 }
+
+
 table {
   margin: auto;
-  border-width:2px;
-  border-style:solid;
-  border-color:black;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
   text-align: center;
 }
-th {
-  border-bottom:solid black;
-    width :auto;
 
+th {
+  border-bottom: solid black;
+  width: auto;
 }
 
 
@@ -46,11 +75,14 @@ th {
 
 
 button {
-  margin : 10px;
-  text-decoration :none;
+  margin: 10px;
+  text-decoration: none;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
+section {
+  text-align: center;
+}

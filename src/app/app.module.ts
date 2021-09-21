@@ -11,7 +11,7 @@ import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ChartsModule} from "ng2-charts";
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import {NgxSliderModule} from '@angular-slider/ngx-slider';
 
 
 @NgModule({
@@ -31,15 +31,12 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ChartsModule,
     NgxSliderModule,
 
-
-
-
     RouterModule.forRoot([
       {path: '', component: WelcomepageComponent},
       {path: 'imc', component: CalculimcComponent},
       {path: 'diary', component: FooddiaryComponent},
       {path: 'weight', component: WeightmeasComponent},
-     // {path: 'progress', component: ProgressComponent},
+      // {path: 'progress', component: ProgressComponent},
       {path: 'data', component: DataupdateComponent},
     ]),
     FormsModule

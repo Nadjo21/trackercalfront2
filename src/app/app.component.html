@@ -1,18 +1,29 @@
+<h4>MyCalDiary.com </h4>
 
-<!--<h1>Tracker Cal...</h1>-->
-
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+<nav id="mynavbar">
 
   <ul class="menu">
-    <li class="nav-item" id="calculimc-menu"><a [routerLink]="['imc']" class="nav-link" href="#">Calcul de mon IMC</a> </li>
 
-    <li class="nav-item" id="journalalimentaire-menu"><a [routerLink]="['diary']" class="nav-link" href="#">Mon journal alimentaire</a></li>
-    <li class="nav-item"id="pesee-menu"><a [routerLink]="['weight']" class="nav-link" href="#"> Ma progression</a></li>
-<!--    <li id="maprogression-menu"><a [routerLink]="['progress']">Ma progression</a></li>-->
-    <li class="nav-item" id="miseajourdonnees-menu"><a [routerLink]="['data']" class="nav-link" href="#">Table des aliments</a></li>
+    <li class="nav-item" id="retour-menuprincipal"><a [routerLink]="['']" class="nav-link" href="#">Home<img
+      src="/assets/house-door.svg" width="25" height="25"></a></li>
+
+    <li class="nav-item" id="calculimc-menu"><a [routerLink]="['imc']" class="nav-link" href="#">Calcul de mon IMC<img
+      src="/assets/calculator.svg" width="25" height="25"></a></li>
+    <li class="nav-item" id="journalalimentaire-menu"><a [routerLink]="['diary']" class="nav-link" href="#">Mon journal
+      alimentaire<img src="/assets/calendar-week.svg" width="25" height="25"></a></li>
+
+    <li class="nav-item" id="pesee-menu"><a [routerLink]="['weight']" class="nav-link" href="#">Ma progression<img
+      src="/assets/graph-down.svg" width="25" height="25"></a></li>
+    <!--    <li id="maprogression-menu"><a [routerLink]="['progress']">Ma progression</a></li>-->
+
+    <li class="nav-item" id="miseajourdonnees-menu"><a [routerLink]="['data']" class="nav-link" href="#">Table des
+      aliments<img src="/assets/card-list.svg" width="25" height="25"></a></li>
+
+
   </ul>
 </nav>
 
 <router-outlet>
   <!--  en fonction de mon router, va s'afficher ici une vue différente-->
 </router-outlet>
+

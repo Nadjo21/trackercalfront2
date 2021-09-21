@@ -30,6 +30,7 @@ export class WeightmeasComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = [];
+  //public lineChartLabels: Date[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any; }) | any;
   public lineChartColors: Color[] = [];
   public lineChartLegend: any;
@@ -46,7 +47,7 @@ export class WeightmeasComponent implements OnInit {
     //readaptation
     this.api.getWeightList().subscribe(resultWeight => {
       //je stocke le resultat de l'API
-       this.weightData = resultWeight;
+      this.weightData = resultWeight;
       //  console.log(this.weightData);
 
 //je fais une boucle pour recuperer les valeurs de ma colonne weight
@@ -58,8 +59,10 @@ export class WeightmeasComponent implements OnInit {
       //je fais une boucle pour recuperer les valeurs de ma colonne date
       for (let date of this.weightData) {
         this.myStoredDate.push(date.measurementDate);
+        this.lineChartLabels.push(date.measurementDate.toString());
+
       }
-console.log(this.myStoredDate);
+      console.log(this.myStoredDate);
 
     })
 // j 'ai declare le type du lineChartDate plus haut ( declarations) - ci dessous affectation valeur
@@ -68,7 +71,12 @@ console.log(this.myStoredDate);
       {data: this.myStoredWeight, label: 'Ma progression'},
     ];
 
-   // this.lineChartLabels = this.myStoredDate;
+    //this.lineChartLabels = ['01/01/2021', '01/02/2021', '01/03/2021', '01/04/2021', '01/05/2021', '01/06/2021', '01/07/2021'];
+    // this.lineChartLabels = [];
+
+
+    // this.myDateToLabel= this.datepipe.transform(this.myStoredDate, 'yyyy-MM-dd');
+
 
     this.lineChartOptions = {
       annotation: undefined,
