@@ -1,10 +1,19 @@
-#myCarousel {
+
+#mynavbar {
+  height: 0px;
+margin: 15px;
+padding-bottom: 100px;
 
 }
 
-#mynavbar {
-  height: 100px;
 
+#myCarousel{
+  height: 600px;
+  width: 800px;
+   horiz-align: center;
+  vertical-align: center;
+  padding-right: 50px;
+  padding-left:50px ;
 }
 
 ul {
@@ -39,11 +48,6 @@ li a:hover {
 }
 
 
-table {
-  justify-content: center;
-  margin: auto;
-}
-
 h1, h2, h3 {
   text-align: center;
 }
@@ -53,25 +57,21 @@ section {
 }
 
 
-table {
-  margin: auto;
-  border-width: 2px;
-  border-style: solid;
-  border-color: black;
+table{
   text-align: center;
+  margin: auto;
 }
 
-th {
-  border-bottom: solid black;
-  width: auto;
+td, tr{
+  text-align: center;
+margin:auto;
+  vertical-align: middle;
 }
 
+input, label{
+  margin: 15px;
+}
 
-/*img{*/
-/*  margin-left: 500px;*/
-/*  margin-right: 500px;*/
-/*  width: 6em;*/
-/*}*/
 
 
 button {
@@ -86,3 +86,66 @@ ul {
 section {
   text-align: center;
 }
+
+/*pour creer arrierr plan derriere form
+*/
+
+#journalalimentaire {
+  background-color: lightsteelblue;
+border-radius: 30px;
+  border-color: grey;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  margin-right: 300px;
+  margin-left: 300px;
+}
+
+#calculpoids{
+  background-color: lightsteelblue;
+  border-radius: 30px;
+  border-color: grey;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  margin-right: 300px;
+  margin-left: 300px;
+}
+
+#data{
+  background-color: lightsteelblue;
+  border-radius: 30px;
+  border-color: grey;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+#imccalcul{
+  background-color: lightsteelblue;
+  border-radius: 30px;
+  border-color: grey;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  margin-right: 180px;
+  margin-left: 180px;
+}
+
+
+/*@media screen and (max-width:768px) {*/
+
+/*  #mynavbar{*/
+/*    position: fixed;*/
+/*    left: -100%;*/
+/*    top: 5rem;*/
+/*    flex-direction: column;*/
+/*    background-color: #fff;*/
+/*    width: 100%;*/
+/*    border-radius: 10px;*/
+/*    text-align: center;*/
+/*    transition: 0.3s;*/
+/*    box-shadow:*/
+/*      0 10px 27px rgba(0, 0, 0, 0.05);*/
+/*  }*/
+
+
+

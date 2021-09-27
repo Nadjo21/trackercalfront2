@@ -1,28 +1,28 @@
 <!--formulaire pour saisir le détail de mes repas -->
 
 <Section id="journalalimentaire">
+
   <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()">
     <div>
       <button type="button" (click)="addDay(-1)" class="btn btn-primary btn-sm">Précédent</button>
-      <label for="diary-date">Date: </label>
-      <input type="date" id="diary-date" formControlName="date" (change)="changeDate($event)">
+      <label for="diary-date"></label>
+      <input type="date" id="diary-date" formControlName="date">
       <button type="button" (click)="addDay(+1)" class="btn btn-primary btn-sm">Suivant</button>
-    </div>
-
+  </div>
     <label for="food-select">Aliment : </label>
     <select formControlName="fooddetail" (change)="changeFood($event)">
       <option value="selectedfood">Selectionner un aliment</option>
       <option *ngFor="let food of foodList | async" [ngValue]="food">{{food.id}}---{{food.name}} </option>
     </select>
-
     <label for="food-quantity">Quantité :</label>
     <input type="number" id="diary-quantity" formControlName="quantity">
     <button type="submit" class="btn btn-success btn-sm">Ajouter</button>
   </form>
+
 </Section>
 
 <Section>
-  <table class="w-50" id="tableValue">
+  <table class="table w-50 .hover" id="tableValue">
     <thead>
     <tr>
       <th>Date:</th>

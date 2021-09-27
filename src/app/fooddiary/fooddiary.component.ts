@@ -164,23 +164,23 @@ export class FooddiaryComponent implements OnInit {
 
   }
 
-  changeDate($event: Event) {
-
-    //je recupere la date selectionnée dans le calendrier
-    this.dateSelected = this.foodDiaryForm.get("date")?.value;
-
-    this.api.getFoodIntakeByDate(this.dateSelected).subscribe(result => {
-      //je recupere le detail du foodintake trouvé dans le resultat et je stocke le resultat
-      this.selectedFoodList = result;
-      console.log(this.selectedFoodList);
-      // si le resultat est vide , j'affiche un message
-      if (this.selectedFoodList === null) {
-        this.emptyFoodintakeList = true;
-        console.log("pas de repas enregistré pour cette journée")
-      }
-
-    });
-
-
-  }
+  // changeDate($event: Event) {
+  //
+  //   //je recupere la date selectionnée dans le calendrier
+  //   this.dateSelected = this.foodDiaryForm.get("date")?.value;
+  //
+  //   this.api.getFoodIntakeByDate(this.dateSelected).subscribe(result => {
+  //     //je recupere le detail du foodintake trouvé dans le resultat et je stocke le resultat
+  //     this.selectedFoodList = result;
+  //     console.log(this.selectedFoodList);
+  //     // si le resultat est vide , j'affiche un message
+  //     if (this.selectedFoodList === null) {
+  //       this.emptyFoodintakeList = true;
+  //       console.log("pas de repas enregistré pour cette journée")
+  //     }
+  //
+  //   });
+  //
+  //
+  // }
 }

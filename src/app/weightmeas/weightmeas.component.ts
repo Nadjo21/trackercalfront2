@@ -30,7 +30,6 @@ export class WeightmeasComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = [];
-  //public lineChartLabels: Date[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any; }) | any;
   public lineChartColors: Color[] = [];
   public lineChartLegend: any;
@@ -59,6 +58,7 @@ export class WeightmeasComponent implements OnInit {
       //je fais une boucle pour recuperer les valeurs de ma colonne date
       for (let date of this.weightData) {
         this.myStoredDate.push(date.measurementDate);
+        // de de toLocalDateString
         this.lineChartLabels.push(date.measurementDate.toString());
 
       }
@@ -67,7 +67,6 @@ export class WeightmeasComponent implements OnInit {
     })
 // j 'ai declare le type du lineChartDate plus haut ( declarations) - ci dessous affectation valeur
     this.lineChartData = [
-
       {data: this.myStoredWeight, label: 'Ma progression'},
     ];
 

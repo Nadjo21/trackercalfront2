@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {CalculimcComponent} from './calculimc/calculimc.component';
 import {FooddiaryComponent} from './fooddiary/fooddiary.component';
 import {WeightmeasComponent} from './weightmeas/weightmeas.component';
-//import {ProgressComponent} from './progress/progress.component';
+
 import {DataupdateComponent} from './dataupdate/dataupdate.component';
 import {RouterModule} from "@angular/router";
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
@@ -20,7 +20,6 @@ import {NgxSliderModule} from '@angular-slider/ngx-slider';
     CalculimcComponent,
     FooddiaryComponent,
     WeightmeasComponent,
-    //ProgressComponent,
     DataupdateComponent,
     WelcomepageComponent
   ],
@@ -36,8 +35,7 @@ import {NgxSliderModule} from '@angular-slider/ngx-slider';
       {path: 'imc', component: CalculimcComponent},
       {path: 'diary', component: FooddiaryComponent},
       {path: 'weight', component: WeightmeasComponent},
-      // {path: 'progress', component: ProgressComponent},
-      {path: 'data', component: DataupdateComponent},
+          {path: 'data', component: DataupdateComponent},
     ]),
     FormsModule
 
