@@ -25,31 +25,15 @@ export class CalculimcComponent implements OnInit {
   displayResult = false;
 
   value: number | any;
-
   options: Options = {
     showTicksValues: true,
     stepsArray: [
-
-      // { value: 16.5, legend: "" },
-      // { value: 17.5,legend: "Maigreur" },
-      // { value: 18.5,legend:""},
-      // { value: 21,legend:"Corpulence normale"},
-      // { value: 25, legend: " " },
-      // { value: 27, legend: "Surpoids" },
-      // { value: 30,legend: " "},
-      // { value: 32,legend: " Obésité modérée"},
-      // { value: 35,legend: " "},
-      // { value: 37, legend: "Obésité Sévère" },
-      // { value: 40, legend: " "},
-
-
       {value: 16.5, legend: "Maigreur"},
       {value: 18.5, legend: "Corpulence normale"},
       {value: 25, legend: "Surpoids"},
       {value: 30, legend: "Obésité modérée"},
       {value: 35, legend: "Obésité Sévère"},
       {value: 40, legend: " "},
-
     ]
   };
 
@@ -62,19 +46,12 @@ export class CalculimcComponent implements OnInit {
 
   imcSave() {
     //je calcule  mon Imc en fonction des paramètre renseigné dans le formulaire ;
-
     this.height = this.imcForm.get('heightF')?.value;
     this.weight = this.imcForm.get('weightF')?.value;
     this.Imc = this.weight / (this.height * this.height);
-
     // je passe le displayResult a true pour afficher la section de resultat côté HTML
     this.displayResult = true;
-
-//
-
     this.value = this.Imc;
-
-
   }
 
 }

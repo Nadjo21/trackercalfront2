@@ -1,9 +1,15 @@
 
-<h4>MyCalDiary.com </h4>
+<!--<h4>MyCalDiary.com </h4>-->
 
-<nav id="mynavbar">
-
-  <ul class="menu">
+<nav class="navbar">
+<div class="brand-title">MyCalDiary.com</div>
+  <a href="#" class="toggle-button">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </a>
+<div class="navbar-links">
+  <ul class="menu" >
 
     <li class="nav-item" id="retour-menuprincipal"><a [routerLink]="['']" class="nav-link" href="#"><img
       src="/assets/house-door.svg" width="25" height="25"></a></li>
@@ -22,6 +28,7 @@
 
 
   </ul>
+</div>
 </nav>
 
 <router-outlet>

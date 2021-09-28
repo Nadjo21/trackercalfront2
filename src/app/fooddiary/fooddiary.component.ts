@@ -122,7 +122,6 @@ export class FooddiaryComponent implements OnInit {
   }
 
   addDay(daysIncrement: number) {
-
     //je recupere la date selectionnée dans le calendrier
     this.dateSelected = this.foodDiaryForm.get("date")?.value;
     console.log(this.dateSelected);
@@ -130,57 +129,26 @@ export class FooddiaryComponent implements OnInit {
     let previousOrFollowingDay = new Date(this.dateSelected);
     previousOrFollowingDay.setDate(previousOrFollowingDay.getDate() + daysIncrement);
     console.log(previousOrFollowingDay);
-
     //je change le format de la date recuperee et je l'insere dans le formulaire
     let moveDate = this.datepipe.transform(previousOrFollowingDay, 'yyyy-MM-dd');
     console.log(moveDate);
     this.foodDiaryForm.get('date')?.setValue(moveDate);
-
-    // console.log(previousOrFollowingDay);
-
-
-    //j'appelle l'API pour recuperer la liste des foodIntake sur cette journée
-
     //je recupere la date selectionnée dans le calendrier
     this.dateSelected = this.foodDiaryForm.get("date")?.value;
-
+    //j'appelle l'API pour recuperer la liste des foodIntake sur cette journée
     this.api.getFoodIntakeByDate(this.dateSelected).subscribe(result => {
       //je recupere le detail des foodintake trouvés dans le resultat et je stocke le resultat
       this.selectedFoodList = result;
       console.log(this.selectedFoodList);
-
       // je reaffiche le total des calories pour cette journée en faisant une boucle sur la colone total
-
       this.totalCalories = 0;
       for (let i = 0; i < this.selectedFoodList.length; i++) {
         // console.log(this.selectedFoodList[i]);
         this.totalCalories += (this.selectedFoodList[i].food.calories) * (this.selectedFoodList[i].quantity);
         console.log("subtotal " + this.totalCalories);
-
       }
-
     });
-
-
   }
 
-  // changeDate($event: Event) {
-  //
-  //   //je recupere la date selectionnée dans le calendrier
-  //   this.dateSelected = this.foodDiaryForm.get("date")?.value;
-  //
-  //   this.api.getFoodIntakeByDate(this.dateSelected).subscribe(result => {
-  //     //je recupere le detail du foodintake trouvé dans le resultat et je stocke le resultat
-  //     this.selectedFoodList = result;
-  //     console.log(this.selectedFoodList);
-  //     // si le resultat est vide , j'affiche un message
-  //     if (this.selectedFoodList === null) {
-  //       this.emptyFoodintakeList = true;
-  //       console.log("pas de repas enregistré pour cette journée")
-  //     }
-  //
-  //   });
-  //
-  //
-  // }
+
 }
