@@ -1,11 +1,12 @@
 <!--formulaire pour enregistrer le suivi de ma perte de poids-->
 
-<Section id="calculpoids">
+<!--<Section id="calculpoids">-->
+<Section >
   <form [formGroup]="weightForm" (ngSubmit)="weightSave()">
     <label for="weight-date">Date: </label>
-    <input type="date" id="weight-date" formControlName="measurementDate">
+    <input type="date" class="form-control" id="weight-date" formControlName="measurementDate">
     <label for="weight-data">Entrer votre poids(kg): </label>
-    <input type="number" id="weight-data" formControlName="weight">
+    <input type="number" class="form-control" id="weight-data" formControlName="weight">
     <button type="submit" class="btn btn-success btn-sm">Sauvegarder</button>
   </form>
 </Section>

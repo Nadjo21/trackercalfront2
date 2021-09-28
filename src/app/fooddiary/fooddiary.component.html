@@ -1,30 +1,41 @@
 <!--formulaire pour saisir le détail de mes repas -->
 
-<Section id="journalalimentaire">
+<!--<Section id="journalalimentaire">-->
+<Section >
 
   <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()">
-    <div>
-      <button type="button" (click)="addDay(-1)" class="btn btn-primary btn-sm">Précédent</button>
+    <div class ="row">
+        <div class="col">
+      <button type="button" (click)="addDay(-1)" class="btn btn-secondary btn-sm">J-1</button>
+        </div>
+      <div class="col">
       <label for="diary-date"></label>
-      <input type="date" id="diary-date" formControlName="date">
-      <button type="button" (click)="addDay(+1)" class="btn btn-primary btn-sm">Suivant</button>
+      <input type="date" class="form-control" id="diary-date" formControlName="date">
+      </div>
+      <div class="col">
+      <button type="button" (click)="addDay(+1)" class="btn btn-secondary btn-sm">J+1</button>
+      </div>
   </div>
+    <div class="row">
     <label for="food-select">Aliment : </label>
     <select formControlName="fooddetail" (change)="changeFood($event)">
-      <option value="selectedfood">Selectionner un aliment</option>
+      <option value="selectedfood" class="form-control">Selectionner un aliment</option>
       <option *ngFor="let food of foodList | async" [ngValue]="food">{{food.name}} </option>
     </select>
+    </div>
+      <div class="col">
     <label for="food-quantity">Quantité :</label>
-    <input type="number" id="diary-quantity" formControlName="quantity">
-    <button type="submit" class="btn btn-success btn-sm">Ajouter</button>
+    <input type="number" class="form-control" id="diary-quantity" formControlName="quantity">
+      </div>
+    <button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
   </form>
 
 </Section>
 
 <Section>
-  <table class="table w-50 .hover" id="tableValue">
+  <table class="table w-50 .hover"id="tableValue" >
     <thead>
-    <tr>
+    <tr >
       <th>Date:</th>
       <th>Aliment consommé:</th>
       <th>Quantité:</th>
@@ -45,7 +56,7 @@
     </tbody>
   </table>
 
-  <button (click)="foodDiarySave()" class="btn btn-primary btn-sm">Sauvegarder</button>
+  <button (click)="foodDiarySave()" class="btn btn-success btn-sm">Sauvegarder</button>
 </Section>
 
 

@@ -51,6 +51,14 @@
   background-color:black ;
   border-radius: 10px;
 }
+
+#fondEcran{
+  height: 100%;
+  width: 100%;
+}
+
+
+
 /*#fondecran {*/
 /*  !* Fixe l'image en haut à gauche de la page *!*/
 /*  position: fixed;*/
@@ -91,9 +99,9 @@
 
 
 
-.active {
-  background-color: #4CAF50;
-}
+/*.active {*/
+/*  background-color: #4CAF50;*/
+/*}*/
 
 
 h1, h2, h3 {
@@ -102,8 +110,21 @@ h1, h2, h3 {
 
 section {
   text-align: center;
+
 }
 
+
+form{
+  padding-top: 50px;
+  padding-bottom: 50px;
+    width: 200px;
+  height: auto;
+   border-radius: 30px;
+  margin:auto;
+  text-align: center;
+/*  flex-direction: row;*/
+/*display: block;*/
+}
 
 table{
   text-align: center;
@@ -116,11 +137,14 @@ margin:auto;
   vertical-align: middle;
 }
 
-input, label{
-  margin: 15px;
+/*input, label{*/
+/*  margin: 10px;*/
+/*}*/
+
+input{
+  text-align: center;
+  padding-bottom: 30px;
 }
-
-
 
 button {
   margin: 10px;
@@ -135,51 +159,34 @@ section {
   text-align: center;
 }
 
-/*pour creer arrierr plan derriere form
+canvas {
+  width: 100%;
+  height: 100%;
+
+}
+
+
+/*pour creer arriere plan derriere form
 */
 
-#journalalimentaire {
-  background-color: lightsteelblue;
-border-radius: 30px;
-  border-color: grey;
-  margin-top: 0px;
-  margin-bottom: 50px;
-  margin-right: 300px;
-  margin-left: 300px;
-}
+/*#journalalimentaire {*/
+/*  background-color: lightsteelblue;*/
+/*border-radius: 30px;*/
+/*  border-color: grey;*/
+/*  margin-top: 0px;*/
+/*  margin-bottom: 50px;*/
+/*  margin-right: 300px;*/
+/*  margin-left: 300px;*/
+/*}*/
 
-#calculpoids{
-  background-color: lightsteelblue;
-  border-radius: 30px;
-  border-color: grey;
-  margin-top: 0px;
-  margin-bottom: 50px;
-  margin-right: 300px;
-  margin-left: 300px;
-}
 
-#data{
-  background-color: lightsteelblue;
-  border-radius: 30px;
-  border-color: grey;
-  margin-top: 0px;
-  margin-bottom: 50px;
-  margin-right: 100px;
-  margin-left: 100px;
-}
 
-#imccalcul{
-  background-color: lightsteelblue;
-  border-radius: 30px;
-  border-color: grey;
-  margin-top: 0px;
-  margin-bottom: 50px;
-  margin-right: 180px;
-  margin-left: 180px;
-}
 
+/*RWD avec les media query*/
 
 @media(max-width: 400px){
+
+  /*pour la navbar*/
   .toggle-button{
     display: flex;
   }
@@ -205,6 +212,31 @@ border-radius: 30px;
   .navbar-links li a{
     padding: .5rem 1rem;
   }
+
+  body{
+    background-color: white;
+  }
+
+
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /*#journalalimentaire{*/
+  /*  background-color: lightsteelblue;*/
+  /*  align-items: flex-start;*/
+  /*  text-align: left;*/
+  /*  flex-direction: column-reverse;*/
+  /*  margin-top: 0px;*/
+  /*  margin-bottom: 0px;*/
+  /*  margin-right: 0px;*/
+  /*  margin-left: 0px;*/
+  /*}*/
+
+
+
 
 
 }

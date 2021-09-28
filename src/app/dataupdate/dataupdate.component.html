@@ -1,21 +1,29 @@
-<Section id="ajouteraliments">
+<!--<Section id="ajouteraliments">-->
+<Section>
 
-  <form [formGroup]="foodForm" (ngSubmit)="onFoodSave()">
-<div id="data">
+  <form [formGroup]="foodForm" (ngSubmit)="onFoodSave()" >
+<!--<div id="data">-->
+<div  >
+
     <label for="food-name">Nom </label>
-    <input type="text" id="food-name" formControlName="name">
+    <input type="text" class="form-control" id="food-name" formControlName="name">
+
 
     <label for="food-quantity">Quantité </label>
-    <input type="number" id="food-quantity" formControlName="quantity">
+    <input type="number" class="form-control" id="food-quantity" formControlName="quantity">
+
 
     <label for="food-type">Type </label>
-    <input type="text" id="food-type" formControlName="type">
+    <input type="text"  class="form-control" id="food-type" formControlName="type">
+
 
     <label for="food-cal">Calories </label>
-    <input type="text" id="food-cal" formControlName="calories">
+    <input type="text" class="form-control" id="food-cal" formControlName="calories">
 
 <!--    <button (click)="onFoodCreate()" class="btn btn-success btn-sm">Creer</button>-->
-    <button type="submit" class="btn btn-primary btn-sm">Sauvegarder </button>
+
+    <button type="submit" class="btn btn-success btn-sm">Sauvegarder </button>
+
 </div>
   </form>
 
@@ -42,11 +50,11 @@
       <td>{{food.calories}}</td>
 
       <td>
-        <button (click)="onEditFood(food)" class="btn btn-danger btn-sm"><img src="/assets/pencil.svg " width="15" height="15"> Modifier</button>
+        <button (click)="onEditFood(food)" class="btn btn-warning btn-sm"> Modifier</button>
       </td>
 
       <td>
-        <button (click)="onFoodDelete(food.id)" class="btn btn-danger btn-sm"><img src="/assets/trash.svg " width="15" height="15" >Supprimer</button>
+        <button (click)="onFoodDelete(food.id)" class="btn btn-danger btn-sm">Supprimer</button>
       </td>
     </tr>
     </tbody>
