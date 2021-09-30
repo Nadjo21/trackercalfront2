@@ -14,6 +14,7 @@ import {ChartsModule} from "ng2-charts";
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,8 @@ import {NgxSliderModule} from '@angular-slider/ngx-slider';
       {path: 'diary', component: FooddiaryComponent},
       {path: 'weight', component: WeightmeasComponent},
           {path: 'data', component: DataupdateComponent},
+
+
     ]),
     FormsModule
 
