@@ -4,6 +4,7 @@ import {ApiService} from "../api.service";
 import {ChartDataSets, ChartOptions} from "chart.js";
 import {Color, Label} from "ng2-charts";
 import {Weight} from "../weight";
+import {Appuser} from "../appuser";
 
 @Component({
   selector: 'app-pesee',
@@ -14,6 +15,7 @@ export class WeightmeasComponent implements OnInit {
 
   // Je crée mon objet JS qui représente le formulaire d'édition de l'enregistrement de mes données
   weightForm = this.formBuilder.group({
+    appuserdetail:'',
     weight: '',
     measurementDate: '',
   });
@@ -21,7 +23,7 @@ export class WeightmeasComponent implements OnInit {
   private weight: any;
   private measurementDate: any;
   private myData: any;
-  weightData: Weight[] | undefined;
+  weightData: Weight[] | any;
   myStoredWeight: number [] = [];
   myStoredDate: Date [] = [];
   public lineChartData: ChartDataSets[] = [];
@@ -33,20 +35,73 @@ export class WeightmeasComponent implements OnInit {
   //je declare le displayresult par defaut a false , afin de generer l'affichage du resultat au clic du bouton
   displayconfirmation = false;
 
+
+  appUserList=this.api.getAppuserList();
+  private appUser: Appuser | any;
+
   constructor(private formBuilder: FormBuilder, private api: ApiService) {
   }
 
   ngOnInit(): void {
-    this.api.getWeightList().subscribe(resultWeight => {
-      //je stocke le resultat de l'API
-      this.weightData = resultWeight;
-      //  console.log(this.weightData);
+//OK opérationnel avant modif
+//     this.api.getWeightList().subscribe(resultWeight => {
+//       //je stocke le resultat de l'API
+//       this.weightData = resultWeight;
+//       //  console.log(this.weightData);
+//
+// //je fais une boucle pour recuperer les valeurs de ma colonne weight et je les stock
+//       for (let weight of this.weightData) {
+//         this.myStoredWeight.push(weight.weight);
+//       }
+//       //je fais une boucle pour recuperer les valeurs de ma colonne date
+//       for (let date of this.weightData) {
+//         this.myStoredDate.push(date.measurementDate);
+//         //je converti les dates aux formats attendus
+//         this.lineChartLabels.push(date.measurementDate.toString());
+//       }
+//       console.log(this.myStoredDate);
+//     })
 
-//je fais une boucle pour recuperer les valeurs de ma colonne weight et je les stock
-      for (let weight of this.weightData) {
+// // j 'ai declare le type du lineChartDate plus haut ( declarations) - ci dessous affectation valeur
+//     this.lineChartData = [
+//       {data: this.myStoredWeight, label: 'Ma progression'},
+//     ];
+//     this.lineChartOptions = {
+//       annotation: undefined,
+//       responsive: true
+//     };
+//     this.lineChartColors = [
+//       {
+//         borderColor: 'white',
+//         backgroundColor: 'rgba(255,0,0,0.3)',
+//       },
+//     ];
+//     this.lineChartLegend = true;
+//     let lineChartType = 'line';
+//     this.lineChartPlugins = [];
+  }
+
+
+  changeAppUser($event: Event) {
+
+    //je recupere le detail de l'appuser selectionné
+    this.appUser= this.weightForm.get('appuserdetail')?.value.id;
+    console.log(this.appUser);
+    //je récupere la liste des weight pour ce user et je stocke le résultat
+    this.api.getWeightByAppuser(this.appUser).subscribe(result => {
+      console.log(result);
+      // @ts-ignore
+      this.weightData = result;
+      console.log(this.weightData);
+
+      //je fais une boucle pour recuperer les valeurs de ma colonne weight et je les stock
+       for (let weight of this.weightData) {
         this.myStoredWeight.push(weight.weight);
-      }
+       }
+
+
       //je fais une boucle pour recuperer les valeurs de ma colonne date
+      // @ts-ignore
       for (let date of this.weightData) {
         this.myStoredDate.push(date.measurementDate);
         //je converti les dates aux formats attendus
@@ -54,7 +109,8 @@ export class WeightmeasComponent implements OnInit {
       }
       console.log(this.myStoredDate);
     })
-// j 'ai declare le type du lineChartDate plus haut ( declarations) - ci dessous affectation valeur
+
+    // j 'ai declaré le type du lineChartDate plus haut ( declarations) - ci dessous affectation valeur
     this.lineChartData = [
       {data: this.myStoredWeight, label: 'Ma progression'},
     ];
@@ -71,7 +127,12 @@ export class WeightmeasComponent implements OnInit {
     this.lineChartLegend = true;
     let lineChartType = 'line';
     this.lineChartPlugins = [];
-  }
+
+    this.displayconfirmation = true;
+
+
+
+      };
 
   weightSave() {
 
@@ -79,14 +140,20 @@ export class WeightmeasComponent implements OnInit {
     this.weight = {
       id: null,
       weight: this.weightForm.get('weight')?.value,
-      measurementDate: this.weightForm.get('measurementDate')?.value
+      measurementDate: this.weightForm.get('measurementDate')?.value,
+      appuser: this.weightForm.get('appuserdetail')?.value,
     };
-    console.log("test click  : " + this.weight.measurementDate);
+    console.log("test click  : " + this.weight.appuser.id);
 
     //pour enregistrer un nouveau poids ,je consomme mon API :
     this.api.createWeight(this.weight).subscribe(weightcreate => {
       console.log(this.weight);
-      this.displayconfirmation = true;
+
+
     })
   }
-}
+
+
+  }
+
+

@@ -36,7 +36,7 @@ import {NgxSliderModule} from '@angular-slider/ngx-slider';
       {path: 'imc', component: CalculimcComponent},
       {path: 'diary', component: FooddiaryComponent},
       {path: 'weight', component: WeightmeasComponent},
-          {path: 'data', component: DataupdateComponent},
+      {path: 'data', component: DataupdateComponent},
 
 
     ]),

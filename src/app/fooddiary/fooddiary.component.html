@@ -4,6 +4,15 @@
 <Section >
 
   <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()">
+    <div class="row">
+      <label for="appuser-select">Profil : </label>
+      <select formControlName="appuserdetail" (change)="changeAppUser($event)">
+        <option value="selectedappuser" class="form-control">Selectionner un utilisateur</option>
+        <option *ngFor="let appuser of appUserList | async" [ngValue]="appuser">{{appuser.name}} </option>
+      </select>
+    </div>
+
+
     <div class ="row">
         <div class="col">
       <button type="button" (click)="addDay(-1)" class="btn btn-secondary btn-sm">J-1</button>
@@ -15,6 +24,8 @@
       <div class="col">
       <button type="button" (click)="addDay(+1)" class="btn btn-secondary btn-sm">J+1</button>
       </div>
+
+
   </div>
     <div class="row">
     <label for="food-select">Aliment : </label>

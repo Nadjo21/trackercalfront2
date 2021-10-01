@@ -3,6 +3,13 @@
 <!--<Section id="calculpoids">-->
 <Section >
   <form [formGroup]="weightForm" (ngSubmit)="weightSave()">
+
+    <label for="appuser-select">Profil : </label>
+    <select formControlName="appuserdetail" (change)="changeAppUser($event)">
+      <option value="selectedappuser" class="form-control">Selectionner un utilisateur</option>
+      <option *ngFor="let appuser of appUserList | async" [ngValue]="appuser">{{appuser.name}} </option>
+    </select>
+
     <label for="weight-date">Date: </label>
     <input type="date" class="form-control" id="weight-date" formControlName="measurementDate">
     <label for="weight-data">Entrer votre poids(kg): </label>
@@ -12,11 +19,7 @@
 </Section>
 
 <Section *ngIf="displayconfirmation" id="registerconfirmation">
-  <h5>Les données ont bien été sauvegardées !</h5>
-</Section>
-
-
-<div style="display: block; width: 1500px; height: 1500px">
+<div id="mongraph" style="display: block; width: 1500px; height: 1500px">
   <canvas baseChart
           [datasets]="lineChartData"
           [labels]="lineChartLabels"
@@ -27,5 +30,6 @@
           [plugins]="lineChartPlugins">
   </canvas>
 </div>
+</Section>
 
 

@@ -4,6 +4,9 @@ import {Weight} from "./weight";
 import {Food} from "./food";
 import {Foodintake} from "./foodintake";
 import {Observable} from "rxjs";
+import {Appuser} from "./appuser";
+
+
 
 
 @Injectable({
@@ -27,6 +30,12 @@ export class ApiService {
     return this.http.get<Weight[]>(this.baseApiUrl + 'api/weightmeasurement')
   }
 
+  //recuperer des weight en fonction  du user selectionné
+
+  getWeightByAppuser( Appuserid: number|undefined): Observable<Weight[]> {
+    return this.http.get<Weight[]>(this.baseApiUrl + 'api/weightmeasurement/' + Appuserid)
+  }
+
 
 //Methode pour récupérer la liste des aliments
   getFoodList() {
@@ -36,6 +45,16 @@ export class ApiService {
   //Methode pour récupérer un aliment par son ID ( pour utilisation dans le fomualire de saisie des repas)
   getFoodById(Foodid: number | undefined) {
     return this.http.get<Food[]>(this.baseApiUrl + 'api/food/' + Foodid)
+  }
+
+//Methode pour récupérer la liste des appusers
+  getAppuserList() {
+    return this.http.get<Appuser[]>(this.baseApiUrl + 'api/appuser')
+  }
+
+  //Methode pour récupérer un appuser par son ID
+  getAppuserById(Appuserid: number | undefined) {
+    return this.http.get<Appuser[]>(this.baseApiUrl + 'api/appuser/' + Appuserid)
   }
 
   //Methode pour supprimer un aliment
@@ -56,7 +75,7 @@ export class ApiService {
 
   //Methode pour enregistrer les repas pris( foodIntake)
 
-  createFoodIntake(foodIntake: Foodintake | undefined) {
+  createFoodIntake(foodIntake: Foodintake ) {
     return this.http.post(this.baseApiUrl + 'api/foodintake', foodIntake);
   }
 
@@ -67,9 +86,18 @@ export class ApiService {
   }
 
   //recuperer les foodintake en fonction de la date
+  //
+  // getFoodIntakeByDate(FoodIntakeDate: Date | undefined): Observable<Foodintake[]> {
+  //   return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydate?date=' + FoodIntakeDate)
+  // }
 
-  getFoodIntakeByDate(FoodIntakeDate: Date | undefined): Observable<Foodintake[]> {
-    return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydate?date=' + FoodIntakeDate)
+
+  //recuperer les foodintake en fonction de la date et du user selectionné
+
+  getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined): Observable<Foodintake[]> {
+      return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydateandappuser/'+ Appuserid + '/?date=' + FoodIntakeDate)
   }
 
+
 }
+
