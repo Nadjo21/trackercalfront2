@@ -1,0 +1,23 @@
+<form (ngSubmit)="onConnect()" [formGroup]="loginForm">
+  <div class="form-field">
+    <label for="username">Nom d'utilisateur</label>
+    <input type="text" id="username" autocomplete="username" formControlName="username">
+    <div class="form-error" *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+      <div *ngIf="username?.errors?.required">
+        Le username est requis
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" formControlName="password">
+    <div class="form-error" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+      <div *ngIf="password?.errors?.required">
+        Le mot de passe est requis
+      </div>
+    </div>
+  </div>
+
+  <button type="submit">Se connecter</button>
+</form>
