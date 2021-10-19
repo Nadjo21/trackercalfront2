@@ -1,0 +1,22 @@
+
+
+form{
+  padding-top: 50px;
+padding-bottom: 50px;
+ width: 25%;
+  height: auto;
+border-radius: 30px;
+  background-color: lightsteelblue;
+  margin-top: 20px;
+text-align: center;
+flex-direction: row;
+display: block;
+ vertical-align:center;
+
+}
+
+
+
+input{
+ margin: auto;
+}

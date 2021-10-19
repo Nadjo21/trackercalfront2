@@ -1,52 +1,55 @@
-<!--formulaire pour saisir le détail de mes repas -->
-
-<!--<Section id="journalalimentaire">-->
-<Section >
-
+<Section>
   <form [formGroup]="foodDiaryForm" (ngSubmit)="addfoodline()">
-    <div class="row">
-      <label for="appuser-select">Profil : </label>
+    <div class="form-group">
+     <label for="appuser-select">Mon profil: </label>
+    </div>
+    <div class="form-group">
       <select formControlName="appuserdetail" (change)="changeAppUser($event)">
-        <option value="selectedappuser" class="form-control">Selectionner un utilisateur</option>
-        <option *ngFor="let appuser of appUserList | async" [ngValue]="appuser">{{appuser.name}} </option>
+        <option value="selectedappuser" class="form-control"></option>
+        <option *ngFor="let appuser of appUserList | async" [ngValue]="appuser">{{appuser.name}}</option>
       </select>
     </div>
 
-
-    <div class ="row">
-        <div class="col">
-      <button type="button" (click)="addDay(-1)" class="btn btn-secondary btn-sm">J-1</button>
-        </div>
-      <div class="col">
-      <label for="diary-date"></label>
-      <input type="date" class="form-control" id="diary-date" formControlName="date">
-      </div>
-      <div class="col">
-      <button type="button" (click)="addDay(+1)" class="btn btn-secondary btn-sm">J+1</button>
-      </div>
-
-
-  </div>
+    <div class="form-group">
     <div class="row">
-    <label for="food-select">Aliment : </label>
-    <select formControlName="fooddetail" (change)="changeFood($event)">
-      <option value="selectedfood" class="form-control">Selectionner un aliment</option>
-      <option *ngFor="let food of foodList | async" [ngValue]="food">{{food.name}} </option>
-    </select>
-    </div>
       <div class="col">
-    <label for="food-quantity">Quantité :</label>
-    <input type="number" class="form-control" id="diary-quantity" formControlName="quantity">
+        <button type="button" (click)="addDay(-1)" class="btn btn-secondary btn-sm">J-1</button>
       </div>
+      <div class="col">
+        <label for="diary-date"></label>
+        <input type="date" class="form-control w-auto" id="diary-date" formControlName="date">
+      </div>
+      <div class="col">
+        <button type="button" (click)="addDay(+1)" class="btn btn-secondary btn-sm">J+1</button>
+      </div>
+    </div>
+    </div>
+
+      <div class="form-group" >
+        <label for="food-select">Aliment : </label>
+      </div>
+        <div class="form-group">
+        <select formControlName="fooddetail" (change)="changeFood($event)">
+          <option value="selectedfood" class="form-control w-auto">Selectionner un aliment</option>
+          <option *ngFor="let food of foodList | async" [ngValue]="food">{{food.name}}</option>
+        </select>
+      </div>
+
+    <div class="form-group">
+      <label for="food-quantity">Quantité :</label>
+    </div>
+      <div class="form-group">
+      <input type="number" name="food-quantity" class="form-control w-auto" id="diary-quantity" formControlName="quantity">
+    </div>
+
+    <div class="form-group">
     <button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
+    </div>
   </form>
 
-</Section>
-
-<Section>
-  <table class="table w-50 .hover"id="tableValue" >
+  <table class="table w-50 .hover" id="tableValue">
     <thead>
-    <tr >
+    <tr>
       <th>Date:</th>
       <th>Aliment consommé:</th>
       <th>Quantité:</th>
@@ -55,7 +58,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let selectedFood of selectedFoodList ">
-      <td>{{selectedFood.date |date : 'dd/MM/yyyy' }}  </td>
+      <td>{{selectedFood.date |date : 'dd/MM/yyyy' }}</td>
       <td>{{selectedFood.food.name}}</td>
       <td>{{selectedFood.quantity}}</td>
       <td>{{(selectedFood.food.calories) * (selectedFood.quantity)}}</td>
@@ -69,5 +72,4 @@
 
   <button (click)="foodDiarySave()" class="btn btn-success btn-sm">Sauvegarder</button>
 </Section>
-
 

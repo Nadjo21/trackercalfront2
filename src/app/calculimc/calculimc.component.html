@@ -1,13 +1,25 @@
 <!-- Formulaire pour calculer un IMC-->
 <!--<Section id="imccalcul">-->
 <Section >
-  <form [formGroup]="imcForm" (ngSubmit)="imcSave()" >
-    <label for="imc-height">Entrez la taille en (en mètre)</label>
-    <input type="number" class="form-control" id="imc-height" formControlName="heightF">
-    <label for="imc-weight">Entrez le poids</label>
-    <input type="number" class="form-control" id="imc-weight" formControlName="weightF">
+
+  <form [formGroup]="imcForm" (ngSubmit)="imcSave()"  >
+    <div class="form-group">
+    <label for="imc-height">Ma taille:</label>
+    </div>
+    <div class="form-group">
+    <input  type="number" class="form-control w-auto" id="imc-height" formControlName="heightF" >
+    </div>
+    <div class="form-group">
+    <label for="imc-weight">Mon poids:</label>
+    </div>
+    <div class="form-group">
+    <input type="number" class="form-control w-auto" id="imc-weight" formControlName="weightF">
+    </div>
+    <div class="form-group">
     <button type="submit" class="btn btn-primary btn-sm">Calculer</button>
+    </div>
   </form>
+
 </Section>
 
 <Section *ngIf="displayResult" id="progressBarIMC">

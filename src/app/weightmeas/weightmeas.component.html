@@ -3,18 +3,32 @@
 <!--<Section id="calculpoids">-->
 <Section >
   <form [formGroup]="weightForm" (ngSubmit)="weightSave()">
+<div class="form-group">
+    <label for="appuser-select">Mon profil : </label>
+</div>
 
-    <label for="appuser-select">Profil : </label>
+    <div class="form-group">
     <select formControlName="appuserdetail" (change)="changeAppUser($event)">
-      <option value="selectedappuser" class="form-control">Selectionner un utilisateur</option>
+      <option value="selectedappuser" class="form-control"></option>
       <option *ngFor="let appuser of appUserList | async" [ngValue]="appuser">{{appuser.name}} </option>
     </select>
+    </div>
 
+    <div class="form-group">
     <label for="weight-date">Date: </label>
-    <input type="date" class="form-control" id="weight-date" formControlName="measurementDate">
-    <label for="weight-data">Entrer votre poids(kg): </label>
+    </div>
+    <div class="form-group">
+    <input type="date" class="form-control" id="weight-date"  formControlName="measurementDate">
+    </div>
+    <div class="form-group">
+    <label for="weight-data">Mon poids: </label>
+    </div>
+    <div class="form-group">
     <input type="number" class="form-control" id="weight-data" formControlName="weight">
+    </div>
+    <div class="form-group">
     <button type="submit" class="btn btn-success btn-sm">Sauvegarder</button>
+</div>
   </form>
 </Section>
 

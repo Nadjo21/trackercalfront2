@@ -110,21 +110,19 @@ h1, h2, h3 {
 
 section {
   text-align: center;
-
 }
 
-
-form{
-  padding-top: 50px;
-  padding-bottom: 50px;
-    width: 200px;
-  height: auto;
-   border-radius: 30px;
-  margin:auto;
-  text-align: center;
-/*  flex-direction: row;*/
-/*display: block;*/
-}
+/*form{*/
+/*  padding-top: 50px;*/
+/*  padding-bottom: 50px;*/
+/*  width: 300px;*/
+/*  height: auto;*/
+/*  border-radius: 30px;*/
+/*  margin:auto;*/
+/*  text-align: center;*/
+/*!*  flex-direction: row;*!*/
+/*!*display: block;*!*/
+/*}*/
 
 table{
   text-align: center;
@@ -137,18 +135,22 @@ margin:auto;
   vertical-align: middle;
 }
 
-/*input, label{*/
-/*  margin: 10px;*/
-/*}*/
+
 
 input{
-  text-align: center;
-  padding-bottom: 30px;
+  /*text-align: center;*/
+  /*padding-bottom: 30px;*/
+  /*padding-top: 30px;*/
+  /*margin : 10px;*/
+  /*padding-bottom: 10px;*/
+
 }
 
+
+
 button {
-  margin: 10px;
-  text-decoration: none;
+  margin : 0px;
+
 }
 
 ul {
@@ -167,7 +169,6 @@ section {
 
 #mongraph{
   width: 30%;
-
 }
 /*pour creer arriere plan derriere form
 */

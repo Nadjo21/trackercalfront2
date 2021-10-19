@@ -37,24 +37,26 @@ export class DataupdateComponent implements OnInit {
 
 
   // Gestion de l'événement clic sur "modifier" ==> je remplis les champs du formulaire
-  onEditFood(food: Food) {
+  onModifyFood(food: Food) {
     console.log("test clic modifier");
     this.foodForm.patchValue({
-      name: '',
-      quantity: '',
-      type: '',
-      calories: '',
+      name: food.name,
+      quantity: food.quantity,
+      type: food.type,
+      calories: food.calories,
     })
+
+
 //Remplissage de l'attribut Food
     this.food = food;
   }
 
 
   //gestion de la sauvegarde d'un food existant
-  onFoodSave() {
+  onFoodCreate() {
 // Si ma propriété food est définie, alors je peux le mettre à jour
     if (this.food) {
-      // Je récupère les propriétés de decor qui viennent du formulaire
+      // Je récupère les propriétés de Food qui viennent du formulaire
       this.food.name = this.foodForm.get('name')?.value;
       this.food.quantity = this.foodForm.get('quantity')?.value;
       this.food.type = this.foodForm.get('type')?.value;
@@ -65,6 +67,8 @@ export class DataupdateComponent implements OnInit {
         console.log("L'aliment a bien été mis à jour");
         this.foodList = this.api.getFoodList()
       });
+
+
     } else {
 
 // Je créer un objet Food  pour pouvoir sauvegarder les données saisies dans le formulaire dans la base
@@ -82,14 +86,13 @@ export class DataupdateComponent implements OnInit {
         console.log("l'aliment a bien été sauvegardé");
         //je reaffiche dynamiquement la liste
         this.foodList = this.api.getFoodList();
-      })
-    }
-  }
 
-  // On vide le formulaire sur le clic du bouton
-  onFoodCreate() {
-    this.foodForm.reset();
-    this.food = null;
+      })
+      // On vide le formulaire sur le clic du bouton
+      this.foodForm.reset();
+      this.food = null;
+
+    }
   }
 
 

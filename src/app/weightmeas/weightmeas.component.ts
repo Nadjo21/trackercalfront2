@@ -99,7 +99,6 @@ export class WeightmeasComponent implements OnInit {
         this.myStoredWeight.push(weight.weight);
        }
 
-
       //je fais une boucle pour recuperer les valeurs de ma colonne date
       // @ts-ignore
       for (let date of this.weightData) {
@@ -127,11 +126,7 @@ export class WeightmeasComponent implements OnInit {
     this.lineChartLegend = true;
     let lineChartType = 'line';
     this.lineChartPlugins = [];
-
     this.displayconfirmation = true;
-
-
-
       };
 
   weightSave() {

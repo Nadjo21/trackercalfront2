@@ -160,7 +160,6 @@ export class FooddiaryComponent implements OnInit {
   }
 
   addDay(daysIncrement: number) {
-
     //je récupère le user selectectionné dans la formulaire
    const appUserId= this.foodDiaryForm.get('appuserdetail')?.value.id;
     // console.log(this.appUser);
@@ -177,7 +176,6 @@ export class FooddiaryComponent implements OnInit {
     this.foodDiaryForm.get('date')?.setValue(moveDate);
     //je recupere la date selectionnée dans le calendrier
     this.dateSelected = this.foodDiaryForm.get("date")?.value;
-
     //j'appelle l'API pour recuperer la liste des foodIntake sur cette journée
     this.api.getFoodIntakeByDateandAppuser(this.dateSelected,appUserId).subscribe(result => {
       //je recupere le detail des foodintake trouvés dans le resultat et je stocke le resultat
@@ -193,17 +191,6 @@ export class FooddiaryComponent implements OnInit {
 
     });
 
-      // this.api.getFoodIntakeByDate(this.dateSelected).subscribe(result => {
-      //   //je recupere le detail des foodintake trouvés dans le resultat et je stocke le resultat
-      //   this.selectedFoodList = result;
-      //   console.log(this.selectedFoodList);
-      //   // je reaffiche le total des calories pour cette journée en faisant une boucle sur la colone total
-      //   this.totalCalories = 0;
-      //   for (let i = 0; i < this.selectedFoodList.length; i++) {
-      //     // console.log(this.selectedFoodList[i]);
-      //     this.totalCalories += (this.selectedFoodList[i].food.calories) * (this.selectedFoodList[i].quantity);
-      //     console.log("subtotal " + this.totalCalories);
-      //   }
 
      }
 

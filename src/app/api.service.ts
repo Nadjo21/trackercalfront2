@@ -5,9 +5,10 @@ import {Food} from "./food";
 import {Foodintake} from "./foodintake";
 import {Observable} from "rxjs";
 import {Appuser} from "./appuser";
-
-
-
+import {Credentials} from "./model/credentials";
+import {Jwt} from "./model/jwt";
+import {tap} from "rxjs/operators";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,14 @@ import {Appuser} from "./appuser";
 export class ApiService {
 
   baseApiUrl = "https://localhost:8080/";
+
+
+  static readonly JWT_STORAGE_KEY = 'JWT_QUOTES_API';
+  private readonly AUTH_ENDPOINT = environment.baseApiUrl + 'authentication/';
+  //private readonly USER_ENDPOINT = environment.baseApiUrl + 'admin/users';
+
+
+
 
 
   constructor(private http: HttpClient) {
@@ -96,6 +105,33 @@ export class ApiService {
 
   getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined): Observable<Foodintake[]> {
       return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydateandappuser/'+ Appuserid + '/?date=' + FoodIntakeDate)
+  }
+
+
+  // pour JWT
+
+  getRoles(): string[] {
+    const jwt = sessionStorage.getItem(ApiService.JWT_STORAGE_KEY);
+
+    if (jwt) {
+      // On décode la partie payload du token
+      const tokenPayload = JSON.parse(atob(jwt.split('.')[1]));
+      // On retourne les rôles
+      return tokenPayload.auth.split(",")
+    }
+    return [];
+  }
+
+  signIn(credentials: Credentials): Observable<Jwt> {
+    return this.http.post<Jwt>(this.AUTH_ENDPOINT + "signin", credentials).pipe(
+      tap(jwt => {
+        sessionStorage.setItem(ApiService.JWT_STORAGE_KEY, jwt.idToken);
+      }));
+  }
+
+
+  signUp(appUser: Appuser): Observable<any> {
+    return this.http.post(this.AUTH_ENDPOINT + "api/signup", appUser);
   }
 
 

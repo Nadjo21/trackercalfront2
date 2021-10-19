@@ -1,5 +1,8 @@
 
-<!--<h4>MyCalDiary.com </h4>-->
+
+
+
+
 
 <nav class="navbar">
 <div class="brand-title">MyCalDiary.com</div>
@@ -26,23 +29,12 @@
     <li class="nav-item" id="miseajourdonnees-menu"><a [routerLink]="['data']" class="nav-link" href="#">Table des
       aliments<img src="/assets/card-list.svg" width="25" height="25"></a></li>
 
+    <li class="nav-item" id="login-menu"><a [routerLink]="['login']" class="nav-link" href="#">Login</a></li>
 
   </ul>
 </div>
 </nav>
 
-
-
-
-<!--<div style="text-align:center"class="container">-->
-<!--  <h1>-->
-<!--    Welcome {{title}}!-->
-<!--  </h1>-->
-<!--  <div class="container">-->
-<!--    <p>Id: <span>{{greeting.id}}</span></p>-->
-<!--    <p>Message: <span>{{greeting.content}}!</span></p>-->
-<!--  </div>-->
-<!--</div>-->
 
 <router-outlet>
   <!--  en fonction de mon router, va s'afficher ici une vue différente-->
