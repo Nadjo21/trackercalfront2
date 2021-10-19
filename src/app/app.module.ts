@@ -37,12 +37,12 @@ import {AuthGuard} from "./auth.guards";
     RouterModule.forRoot([
       {path: '', component: WelcomepageComponent},
       {path: 'imc', component: CalculimcComponent},
-    //  {path: 'diary', component: FooddiaryComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
-      {path: 'diary', component: FooddiaryComponent},
+     {path: 'diary', component: FooddiaryComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
+      // {path: 'diary', component: FooddiaryComponent},
      // {path: 'weight', component: WeightmeasComponent},
-      {path: 'weight', component: WeightmeasComponent},
-      //{path: 'data', component: DataupdateComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
-      {path: 'data', component: DataupdateComponent},
+      {path: 'weight', component: WeightmeasComponent,canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
+      {path: 'data', component: DataupdateComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
+     // {path: 'data', component: DataupdateComponent},
       {path: 'login', component: LoginComponent},
 
 

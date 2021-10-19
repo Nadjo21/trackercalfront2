@@ -6,7 +6,7 @@
     <div class="form-group">
       <select formControlName="appuserdetail" (change)="changeAppUser($event)">
         <option value="selectedappuser" class="form-control"></option>
-        <option *ngFor="let appuser of appUserList | async" [ngValue]="appuser">{{appuser.name}}</option>
+        <option *ngFor="let appuser of appUserList | async" [ngValue]="appuser">{{appuser.username}}</option>
       </select>
     </div>
 

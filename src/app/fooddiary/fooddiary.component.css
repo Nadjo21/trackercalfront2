@@ -8,6 +8,9 @@ padding-bottom: 50px;
 border-radius: 30px;
   background-color: lightsteelblue;
   margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
 text-align: center;
 flex-direction: row;
 display: block;
@@ -17,6 +20,11 @@ display: block;
 
 
 
+
 input{
  margin: auto;
+}
+
+button, label{
+  margin-top: 10px;
 }
