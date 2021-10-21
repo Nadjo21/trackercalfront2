@@ -7,13 +7,13 @@
     <label for="imc-height">Ma taille:</label>
     </div>
     <div class="form-group">
-    <input  type="number" class="form-control w-auto" id="imc-height" formControlName="heightF" >
+    <input  type="number" class="form-control" id="imc-height" formControlName="heightF" >
     </div>
     <div class="form-group">
     <label for="imc-weight">Mon poids:</label>
     </div>
     <div class="form-group">
-    <input type="number" class="form-control w-auto" id="imc-weight" formControlName="weightF">
+    <input type="number" class="form-control" id="imc-weight" formControlName="weightF">
     </div>
     <div class="form-group">
     <button type="submit" class="btn btn-primary btn-sm">Calculer</button>
@@ -24,7 +24,7 @@
 
 <Section *ngIf="displayResult" id="progressBarIMC">
   <h4>Votre IMC est de : {{Imc | number}}</h4>
-  <ngx-slider [(value)]="value" [options]="options" class="w-50"></ngx-slider>
+  <ngx-slider [(value)]="value" [options]="options" class="w-50" id="monslider"></ngx-slider>
 </Section>
 
 

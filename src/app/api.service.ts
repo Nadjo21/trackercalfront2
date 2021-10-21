@@ -23,9 +23,6 @@ export class ApiService {
   //private readonly USER_ENDPOINT = environment.baseApiUrl + 'admin/users';
 
 
-
-
-
   constructor(private http: HttpClient) {
   }
 
@@ -130,9 +127,9 @@ export class ApiService {
   }
 
 
-  signUp(appUser: Appuser): Observable<any> {
-    return this.http.post(this.AUTH_ENDPOINT + "api/signup", appUser);
-  }
+  // signUp(appUser: Appuser): Observable<any> {
+  //   return this.http.post(this.AUTH_ENDPOINT + "api/signup", appUser);
+  // }
 
 
 }

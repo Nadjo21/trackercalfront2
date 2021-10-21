@@ -17,7 +17,7 @@
       </div>
       <div class="col">
         <label for="diary-date"></label>
-        <input type="date" class="form-control w-auto" id="diary-date" formControlName="date">
+        <input type="date" class="form-control" id="diary-date" formControlName="date">
       </div>
       <div class="col">
         <button type="button" (click)="addDay(+1)" class="btn btn-secondary btn-sm">J+1</button>
@@ -30,7 +30,7 @@
       </div>
         <div class="form-group">
         <select formControlName="fooddetail" (change)="changeFood($event)">
-          <option value="selectedfood" class="form-control w-auto">Selectionner un aliment</option>
+          <option value="selectedfood" class="form-control">Selectionner un aliment</option>
           <option *ngFor="let food of foodList | async" [ngValue]="food">{{food.name}}</option>
         </select>
       </div>
@@ -39,7 +39,7 @@
       <label for="food-quantity">Quantité :</label>
     </div>
       <div class="form-group">
-      <input type="number" name="food-quantity" class="form-control w-auto" id="diary-quantity" formControlName="quantity">
+      <input type="number" name="food-quantity" class="form-control" id="diary-quantity" formControlName="quantity">
     </div>
 
     <div class="form-group">
@@ -73,3 +73,31 @@
   <button (click)="foodDiarySave()" class="btn btn-success btn-sm">Sauvegarder</button>
 </Section>
 
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

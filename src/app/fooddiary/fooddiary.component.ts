@@ -10,7 +10,7 @@ import {Appuser} from "../appuser";
   selector: 'app-fooddiary',
   templateUrl: './fooddiary.component.html',
   styleUrls: ['./fooddiary.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe],
 
 })
 export class FooddiaryComponent implements OnInit {
@@ -139,24 +139,24 @@ export class FooddiaryComponent implements OnInit {
   foodDiarySave() {
 // pour enregistrer toutes les données de mon tableau en une seule fois , je fais une boucle
 // sur selectedFoodList - je transforme ensuite chaque [i] en foodIntake avant appel a l'API
-
     for (let i = 0; i < this.selectedFoodList.length; i++) {
       console.log(this.selectedFoodList[i]);
       this.foodIntake = this.selectedFoodList[i];
       //appel api pour insertion BDD
       this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
-
         console.log(this.foodIntake);
       })
-
     }
-
     //on vide le tableau apres avoir sauvegardé
     this.foodDiaryForm.reset();
-
     //je vide en meme temps egalement le contenu du tableau
     this.selectedFoodList.splice(0, this.selectedFoodList.length);
     this.totalCalories = 0;
+//je reaffiche la date du jour dans le formulaire
+    let dDay = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
+    console.log(dDay);
+    //j'insere la date au bon format dans le formulaire
+    this.foodDiaryForm.get('date')?.setValue(dDay);
   }
 
   addDay(daysIncrement: number) {
