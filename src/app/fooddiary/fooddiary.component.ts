@@ -36,12 +36,13 @@ export class FooddiaryComponent implements OnInit {
   appUserList=this.api.getAppuserList();
   private appUser: Appuser | any;
 
+  registrationOK = false;
+  private dateSelected: any;
+
   //pour retrouver le détail d'un foodIntake sur une date selectionnée
   // @ts-ignore
   // foodIntakeFoundByDate = this.api.getFoodIntakeByDate(this.date);
-
-  private dateSelected: any;
-  foodIntakeList = this.api.getFoodIntakeList();
+  //foodIntakeList = this.api.getFoodIntakeList();
 
 
   constructor(private formBuilder: FormBuilder, private api: ApiService, public datepipe: DatePipe) {
@@ -89,6 +90,7 @@ export class FooddiaryComponent implements OnInit {
   }
 
 //fonction ci dessous pour reagir au changement de selection de l'aliment dans le menu deroulant:
+
 
 
   changeFood($event: Event) {
@@ -157,13 +159,14 @@ export class FooddiaryComponent implements OnInit {
     console.log(dDay);
     //j'insere la date au bon format dans le formulaire
     this.foodDiaryForm.get('date')?.setValue(dDay);
+    //j'affiche la pop up de confirmation
+    this.registrationOK=true;
   }
 
   addDay(daysIncrement: number) {
     //je récupère le user selectectionné dans la formulaire
    const appUserId= this.foodDiaryForm.get('appuserdetail')?.value.id;
-    // console.log(this.appUser);
-     //je recupere la date selectionnée dans le calendrier
+        //je recupere la date selectionnée dans le calendrier
     this.dateSelected = this.foodDiaryForm.get("date")?.value;
     console.log(this.dateSelected);
 //j'ajoute ou je supprime un jour au clic du bouton pour naviguer dans le calendrier
@@ -184,7 +187,6 @@ export class FooddiaryComponent implements OnInit {
       // je reaffiche le total des calories pour cette journée en faisant une boucle sur la colone total
       this.totalCalories = 0;
       for (let i = 0; i < this.selectedFoodList.length; i++) {
-        // console.log(this.selectedFoodList[i]);
         this.totalCalories += (this.selectedFoodList[i].food.calories) * (this.selectedFoodList[i].quantity);
         console.log("subtotal " + this.totalCalories);
       }

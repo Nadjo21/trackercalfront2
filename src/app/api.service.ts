@@ -97,11 +97,15 @@ export class ApiService {
   //   return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydate?date=' + FoodIntakeDate)
   // }
 
+  //
+  // getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined): Observable<Foodintake[]> {
+  //   return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydateandappuser/'+ Appuserid + '/?date=' + FoodIntakeDate)
+  // }
 
   //recuperer les foodintake en fonction de la date et du user selectionné
-
-  getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined): Observable<Foodintake[]> {
-      return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydateandappuser/'+ Appuserid + '/?date=' + FoodIntakeDate)
+  getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined) {
+      return this.http.get<Foodintake[]>
+      (this.baseApiUrl + 'api/foodintake/foodintakebydateandappuser/'+ Appuserid + '/?date=' + FoodIntakeDate)
   }
 
 
@@ -124,6 +128,12 @@ export class ApiService {
       tap(jwt => {
         sessionStorage.setItem(ApiService.JWT_STORAGE_KEY, jwt.idToken);
       }));
+  }
+
+
+  //fonction pour se déconnecter
+  signOut(): void {
+    sessionStorage.removeItem(ApiService.JWT_STORAGE_KEY);
   }
 
 

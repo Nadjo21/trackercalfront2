@@ -1,7 +1,4 @@
-<!-- Formulaire pour calculer un IMC-->
-<!--<Section id="imccalcul">-->
 <Section >
-
   <form [formGroup]="imcForm" (ngSubmit)="imcSave()"  >
     <div class="form-group">
     <label for="imc-height">Ma taille:</label>
@@ -19,7 +16,6 @@
     <button type="submit" class="btn btn-primary btn-sm">Calculer</button>
     </div>
   </form>
-
 </Section>
 
 <Section *ngIf="displayResult" id="progressBarIMC">

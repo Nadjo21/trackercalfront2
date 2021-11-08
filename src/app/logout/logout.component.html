@@ -1,0 +1,29 @@
+<Section>
+  <div class="form-field">
+    <label>Cliquer pour confirmer la déconnexion</label>
+  </div>
+  <div class="form-field">
+<button title="Cliquez sur 'confirmer' pour vous déconnecter"  class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="logOut()" >Confimer
+</button>
+    </div>
+</Section>
+
+
+<Section *ngIf="deconnexionOK" id="deconnect">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Vous êtes bien deconnecté!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>

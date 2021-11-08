@@ -112,6 +112,8 @@ form{
 
 input{
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button, label{
@@ -120,34 +122,29 @@ button, label{
 
 #mongraph{
   display:block;
-  width: 100%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
 
-/*RWD avec les media query*/
 
 @media(max-width: 700px) {
-
   /*pour la navbar*/
   .toggle-button {
     display: flex;
   }
-
   .navbar-links {
-    /*display: none;*/
-    width: 100%;
+      width: 100%;
   }
-
   .navbar {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .navbar-links ul {
     flex-direction: column;
   }
-
   .navbar-links li {
     text-align: center;
   }
@@ -156,27 +153,19 @@ button, label{
     padding: .5rem 1rem;
   }
 
-  body {
-    background-color: white;
+form{
+  width:auto;
+  background-color: whitesmoke;
+}
+#monslider{
+  display: none;
+}
+
+  #mongraph{
+    display:block;
+    width: 100%;
   }
 
-
-  @media (max-width: 500px) {
-    form {
-      width: auto;
-      background-color: lightgrey;
-    }
-
-  }
-
-
-  @media (min-width: 500px) and (max-width: 750px) {
-    form {
-      width: auto;
-      background-color: lightgrey;
-    }
-
-  }
 }
 
 

@@ -14,6 +14,7 @@ import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import {LoginComponent} from "./login/login.component";
 import {JwtInterceptor} from "./jwt.interceptor";
 import {AuthGuard} from "./auth.guards";
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {AuthGuard} from "./auth.guards";
     WeightmeasComponent,
     DataupdateComponent,
     WelcomepageComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
 
   ],
   imports: [
@@ -36,14 +38,12 @@ import {AuthGuard} from "./auth.guards";
 
     RouterModule.forRoot([
       {path: '', component: WelcomepageComponent},
-      {path: 'imc', component: CalculimcComponent},
+      {path: 'imc', component: CalculimcComponent,canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
      {path: 'diary', component: FooddiaryComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
-      // {path: 'diary', component: FooddiaryComponent},
-     // {path: 'weight', component: WeightmeasComponent},
       {path: 'weight', component: WeightmeasComponent,canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
       {path: 'data', component: DataupdateComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
-     // {path: 'data', component: DataupdateComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'logout', component: LogoutComponent},
 
 
     ]),
