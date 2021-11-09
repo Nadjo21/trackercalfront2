@@ -9,9 +9,6 @@ import {Router} from "@angular/router";
 })
 export class LogoutComponent implements OnInit {
 
-  deconnexionOK=false
-
-
   constructor(private  api: ApiService,private router: Router) { }
 
   ngOnInit(): void {
@@ -19,7 +16,7 @@ export class LogoutComponent implements OnInit {
 
   logOut() {
     this.api.signOut();
-    this.deconnexionOK=true;
+
   }
 
 

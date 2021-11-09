@@ -91,19 +91,11 @@ export class ApiService {
     return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake')
   }
 
-  //recuperer les foodintake en fonction de la date
-  //
-  // getFoodIntakeByDate(FoodIntakeDate: Date | undefined): Observable<Foodintake[]> {
-  //   return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydate?date=' + FoodIntakeDate)
-  // }
 
-  //
-  // getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined): Observable<Foodintake[]> {
-  //   return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake/foodintakebydateandappuser/'+ Appuserid + '/?date=' + FoodIntakeDate)
-  // }
+  //getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined) {
 
   //recuperer les foodintake en fonction de la date et du user selectionné
-  getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined) {
+  getFoodIntakeByDateandAppuser(FoodIntakeDate: Date , Appuserid: number) {
       return this.http.get<Foodintake[]>
       (this.baseApiUrl + 'api/foodintake/foodintakebydateandappuser/'+ Appuserid + '/?date=' + FoodIntakeDate)
   }
@@ -135,12 +127,6 @@ export class ApiService {
   signOut(): void {
     sessionStorage.removeItem(ApiService.JWT_STORAGE_KEY);
   }
-
-
-  // signUp(appUser: Appuser): Observable<any> {
-  //   return this.http.post(this.AUTH_ENDPOINT + "api/signup", appUser);
-  // }
-
 
 }
 
