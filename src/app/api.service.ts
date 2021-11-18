@@ -17,10 +17,8 @@ export class ApiService {
 
   baseApiUrl = "https://localhost:8080/";
 
-
   static readonly JWT_STORAGE_KEY = 'JWT_QUOTES_API';
   private readonly AUTH_ENDPOINT = environment.baseApiUrl + 'authentication/';
-  //private readonly USER_ENDPOINT = environment.baseApiUrl + 'admin/users';
 
 
   constructor(private http: HttpClient) {
@@ -42,13 +40,12 @@ export class ApiService {
     return this.http.get<Weight[]>(this.baseApiUrl + 'api/weightmeasurement/' + Appuserid)
   }
 
-
 //Methode pour récupérer la liste des aliments
   getFoodList() {
     return this.http.get<Food[]>(this.baseApiUrl + 'api/food')
   }
 
-  //Methode pour récupérer un aliment par son ID ( pour utilisation dans le fomualire de saisie des repas)
+  //Methode pour récupérer un aliment par son ID ( pour utilisation dans le formulaire de saisie des repas)
   getFoodById(Foodid: number | undefined) {
     return this.http.get<Food[]>(this.baseApiUrl + 'api/food/' + Foodid)
   }
@@ -91,8 +88,6 @@ export class ApiService {
     return this.http.get<Foodintake[]>(this.baseApiUrl + 'api/foodintake')
   }
 
-
-  //getFoodIntakeByDateandAppuser(FoodIntakeDate: Date | undefined , Appuserid: number|undefined) {
 
   //recuperer les foodintake en fonction de la date et du user selectionné
   getFoodIntakeByDateandAppuser(FoodIntakeDate: Date , Appuserid: number) {

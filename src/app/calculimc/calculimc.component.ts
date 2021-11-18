@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {Options} from '@angular-slider/ngx-slider';
+import {ApiService} from "../api.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -19,7 +21,7 @@ export class CalculimcComponent implements OnInit {
 
   height: any;
   weight: any;
-  Imc: any;
+  imc:  any;
 
 //je declare le displayresult par defaut a false , afin de generer l'affichage du resultat au clic du bouton
   displayResult = false;
@@ -37,7 +39,7 @@ export class CalculimcComponent implements OnInit {
     ]
   };
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private  api: ApiService,private router: Router) {
   }
 
   ngOnInit(): void {
@@ -48,12 +50,15 @@ export class CalculimcComponent implements OnInit {
     //je calcule  mon Imc en fonction des paramètre renseigné dans le formulaire ;
     this.height = this.imcForm.get('heightF')?.value;
     this.weight = this.imcForm.get('weightF')?.value;
-    this.Imc = this.weight / (this.height * this.height);
+    this.imc = this.weight / (this.height * this.height);
     // je passe le displayResult a true pour afficher la section de resultat côté HTML
     this.displayResult = true;
-    this.value = this.Imc;
+    this.value = this.imc;
   }
 
+  logOut() {
+    this.api.signOut();
+  }
 }
 
 

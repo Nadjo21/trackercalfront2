@@ -106,4 +106,7 @@ export class DataupdateComponent implements OnInit {
 
   }
 
+  logOut() {
+    this.api.signOut();
+  }
 }

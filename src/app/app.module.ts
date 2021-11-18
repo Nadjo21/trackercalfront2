@@ -39,12 +39,14 @@ import { LogoutComponent } from './logout/logout.component';
     RouterModule.forRoot([
       {path: '', component: WelcomepageComponent},
       {path: 'imc', component: CalculimcComponent,canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
-     {path: 'diary', component: FooddiaryComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
-      {path: 'weight', component: WeightmeasComponent,canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
+          // children: [{path:'logout', component: LogoutComponent}]},
+     {path: 'diary', component: FooddiaryComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]},
+       children: [{path:'logout', component: LogoutComponent}]},
+      {path: 'weight', component: WeightmeasComponent,canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]},
+        children: [{path:'logout', component: LogoutComponent}]},
       {path: 'data', component: DataupdateComponent, canActivate:[AuthGuard], data:{roles:["ROLE_ADMIN"]}},
+        // children: [{path:'logout', component: LogoutComponent}]},
       {path: 'login', component: LoginComponent},
-      {path: 'logout', component: LogoutComponent},
-
 
     ]),
     FormsModule

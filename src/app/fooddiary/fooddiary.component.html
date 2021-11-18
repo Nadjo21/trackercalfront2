@@ -4,7 +4,7 @@
      <label for="appuser-select">Mon profil: </label>
     </div>
     <div class="form-group">
-      <select formControlName="appuserdetail" (change)="changeAppUser($event)">
+      <select formControlName="appuserdetail" (change)="changeAppUser($event)" id="appuser-select">
         <option value="selectedappuser" class="form-control"></option>
         <option *ngFor="let appuser of appUserList | async" [ngValue]="appuser">{{appuser.username}}</option>
       </select>
@@ -29,14 +29,14 @@
         <label for="food-select">Aliment : </label>
       </div>
         <div class="form-group">
-        <select formControlName="fooddetail" (change)="changeFood($event)">
+        <select formControlName="fooddetail" (change)="changeFood($event)" id="food-select">
           <option value="selectedfood" class="form-control">Selectionner un aliment</option>
           <option *ngFor="let food of foodList | async" [ngValue]="food">{{food.name}}</option>
         </select>
       </div>
 
     <div class="form-group">
-      <label for="food-quantity">Quantité :</label>
+      <label for="diary-quantity">Quantité :</label>
     </div>
       <div class="form-group">
       <input type="number" name="food-quantity" class="form-control" id="diary-quantity" formControlName="quantity">
@@ -84,9 +84,40 @@
         Vos données ont bien été sauvegardées!
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
           </div>
     </div>
   </div>
 </div>
 
+
+<Section class="fixed-bottom">
+  <div class="form-field" >
+  </div>
+  <div class="form-field">
+    <button title=""  class="btn btn-danger" id="totherightbutton"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="logOut()" >Me déconnecter
+    </button>
+  </div>
+</Section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Vous êtes bien deconnecté!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<router-outlet>
+  <!--  en fonction de mon router, va s'afficher ici une vue différente-->
+</router-outlet>

@@ -11,10 +11,15 @@ import {ApiService} from "../api.service";
 })
 export class LoginComponent implements OnInit {
 
+
+
   loginForm = this.formBuilder.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required]]
   });
+
+
+
 
   constructor(private  api: ApiService, private formBuilder: FormBuilder, private router: Router) {
   }
@@ -23,10 +28,12 @@ export class LoginComponent implements OnInit {
   }
 
   onConnect() {
+
     this.api.signIn({
       username: this.username?.value,
       password: this.password?.value
     }).subscribe(() => this.router.navigate(['']));
+
   }
 
   get username() {

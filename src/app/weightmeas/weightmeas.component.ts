@@ -18,7 +18,7 @@ export class WeightmeasComponent implements OnInit {
 
   // Je crée mon objet JS qui représente le formulaire d'édition de l'enregistrement de mes données
   weightForm = this.formBuilder.group({
-    appuserdetail:'',
+    appuserdetail: '',
     weight: '',
     measurementDate: '',
   });
@@ -39,49 +39,40 @@ export class WeightmeasComponent implements OnInit {
   displayconfirmation = false;
 
 
-  appUserList=this.api.getAppuserList();
+  appUserList = this.api.getAppuserList();
   private appUser: Appuser | any;
 
   currentDate = new Date();
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService,public datepipe: DatePipe) {
+  constructor(private formBuilder: FormBuilder, private api: ApiService, public datepipe: DatePipe) {
   }
 
   ngOnInit(): void {
 
 
     let dDay = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
-    console.log(dDay);
+
     //j'insere la date au bon format dans le formulaire
     this.weightForm.get('measurementDate')?.setValue(dDay);
   }
 
 
   changeAppUser($event: Event) {
-
     //je recupere le detail de l'appuser selectionné
-    this.appUser= this.weightForm.get('appuserdetail')?.value.id;
-    console.log(this.appUser);
+    this.appUser = this.weightForm.get('appuserdetail')?.value.id;
     //je récupere la liste des weight pour ce user et je stocke le résultat
     this.api.getWeightByAppuser(this.appUser).subscribe(result => {
-      console.log(result);
-      // @ts-ignore
       this.weightData = result;
-      console.log(this.weightData);
-
       //je fais une boucle pour recuperer les valeurs de ma colonne weight et je les stock
-       for (let weight of this.weightData) {
+      for (let weight of this.weightData) {
         this.myStoredWeight.push(weight.weight);
-       }
-
+      }
       //je fais une boucle pour recuperer les valeurs de ma colonne date
-      // @ts-ignore
       for (let date of this.weightData) {
         this.myStoredDate.push(date.measurementDate);
         //je converti les dates aux formats attendus
         this.lineChartLabels.push(date.measurementDate.toString());
       }
-      console.log(this.myStoredDate);
     })
 
     // j 'ai declaré le type du lineChartDate plus haut ( declarations) - ci dessous affectation valeur
@@ -97,14 +88,14 @@ export class WeightmeasComponent implements OnInit {
         //borderColor: 'white',
         // backgroundColor: 'rgba(255,0,0,0.3)',
         borderColor: 'rgba(255, 206, 86, 0.2)',
-               backgroundColor: 'rgba(255,255,0,0.28)'
+        backgroundColor: 'rgba(255,255,0,0.28)'
       },
     ];
     this.lineChartLegend = true;
     let lineChartType = 'line';
     this.lineChartPlugins = [];
     this.displayconfirmation = true;
-      };
+  };
 
   weightSave() {
 
@@ -124,8 +115,10 @@ export class WeightmeasComponent implements OnInit {
 
     })
   }
-
-
+  logOut() {
+    this.api.signOut();
   }
+
+}
 
 

@@ -58,28 +58,18 @@ export class FooddiaryComponent implements OnInit {
   changeAppUser($event: Event) {
     //je recupere le detail de l'appuser selectionné
     const appUserId= this.foodDiaryForm.get('appuserdetail')?.value.id;
-
-
     //je recupere la date selectionnée dans le calendrier
     this.dateSelected = this.foodDiaryForm.get("date")?.value;
-
-
     //je récupere la liste des foodintake pour ce user
-
     this.api.getFoodIntakeByDateandAppuser(this.dateSelected,appUserId).subscribe(result => {
       //je recupere le detail des foodintake trouvés dans le resultat et je stocke le resultat
       this.selectedFoodList = result;
-      console.log(this.selectedFoodList);
-      // je reaffiche le total des calories pour cette journée en faisant une boucle sur la colone total
+          // je reaffiche le total des calories pour cette journée en faisant une boucle sur la colonne total
       this.totalCalories = 0;
       for (let i = 0; i < this.selectedFoodList.length; i++) {
-        // console.log(this.selectedFoodList[i]);
         this.totalCalories += (this.selectedFoodList[i].food.calories) * (this.selectedFoodList[i].quantity);
-        console.log("subtotal " + this.totalCalories);
-      }
-
+             }
     });
-
   }
 
 //fonction ci dessous pour reagir au changement de selection de l'aliment dans le menu deroulant:
@@ -90,7 +80,6 @@ export class FooddiaryComponent implements OnInit {
 
     //je selectionne un aliment dans mon menu deroulant et je charge la liste de tous les aliments
     this.api.getFoodList().subscribe(result => {
-      console.log(result);
       // @ts-ignore
       this.food = result;
       //je recupere le detail l'aliment selectionné
@@ -105,7 +94,6 @@ export class FooddiaryComponent implements OnInit {
   addfoodline() {
     console.log(this.foodDiaryForm.get('fooddetail')?.value);
     //je crée un objet foodIntake - // 1 foodIntake = 1 ligne du tableau
-
     this.foodIntake =
       {
         // @ts-ignore
@@ -116,8 +104,6 @@ export class FooddiaryComponent implements OnInit {
         appuser:this.foodDiaryForm.get('appuserdetail')?.value,
       }
 
-    console.log("test click bouton ajouter");
-
     //j'ajoute une nouvelle ligne à chaque clic ( + *ngFor côté HTML) :
 
     if (this.foodIntake) {
@@ -127,7 +113,6 @@ export class FooddiaryComponent implements OnInit {
       this.totalCalories = this.totalCalories + (this.foodIntake.quantity * this.foodIntake.food.calories);
       console.log("test " + this.totalCalories);
     }
-
   }
 
 
@@ -138,28 +123,21 @@ export class FooddiaryComponent implements OnInit {
       console.log(this.selectedFoodList[i]);
       this.foodIntake = this.selectedFoodList[i];
       //appel api pour insertion BDD
-
       this.api.createFoodIntake(this.foodIntake).subscribe(foodIntake => {
         console.log(this.foodIntake);
       })
     }
-    /*forkJoin([
-        //tableau d'Observable
-        this.api.createFoodIntake(this.foodIntake),
-        this.api.createFoodIntake(this.foodIntake)
-      ]).subscribe()*/
+
     //on vide le tableau apres avoir sauvegardé
     this.foodDiaryForm.reset();
     //je vide en meme temps egalement le contenu du tableau
     this.selectedFoodList.splice(0, this.selectedFoodList.length);
     this.totalCalories = 0;
-//je reaffiche la date du jour dans le formulaire
+    //je reaffiche la date du jour dans le formulaire
     let dDay = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
     console.log(dDay);
     //j'insere la date au bon format dans le formulaire
     this.foodDiaryForm.get('date')?.setValue(dDay);
-    //j'affiche la pop up de confirmation
-
   }
 
   addDay(daysIncrement: number) {
@@ -167,7 +145,6 @@ export class FooddiaryComponent implements OnInit {
    const appUserId= this.foodDiaryForm.get('appuserdetail')?.value.id;
     //je recupere la date selectionnée dans le calendrier
     this.dateSelected = this.foodDiaryForm.get("date")?.value;
-    console.log(this.dateSelected);
     //j'ajoute ou je supprime un jour au clic du bouton pour naviguer dans le calendrier
     let previousOrFollowingDay = new Date(this.dateSelected);
     previousOrFollowingDay.setDate(previousOrFollowingDay.getDate() + daysIncrement);
@@ -186,10 +163,10 @@ export class FooddiaryComponent implements OnInit {
         this.totalCalories += (this.selectedFoodList[i].food.calories) * (this.selectedFoodList[i].quantity);
         console.log("subtotal " + this.totalCalories);
       }
-
     });
-
-
      }
 
+  logOut() {
+    this.api.signOut();
+  }
 }
