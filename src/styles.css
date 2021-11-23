@@ -109,7 +109,6 @@ form{
 }
 
 
-
 input{
   text-align: center;
   margin-left: auto;
@@ -127,11 +126,7 @@ button, label{
   margin-right: auto;
 }
 
-#totherightbutton{
- margin-left: 90%;
-  margin-bottom:10px;
 
-}
 
 @media(max-width: 700px) {
   /*pour la navbar*/
@@ -168,6 +163,7 @@ form{
     display:block;
     width: 100%;
   }
+
 
 }
 

@@ -56,9 +56,7 @@ export class CalculimcComponent implements OnInit {
     this.value = this.imc;
   }
 
-  logOut() {
-    this.api.signOut();
-  }
+
 }
 
 

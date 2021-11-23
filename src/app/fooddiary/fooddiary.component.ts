@@ -166,7 +166,5 @@ export class FooddiaryComponent implements OnInit {
     });
      }
 
-  logOut() {
-    this.api.signOut();
-  }
+
 }

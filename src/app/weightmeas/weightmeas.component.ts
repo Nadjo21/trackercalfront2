@@ -48,11 +48,8 @@ export class WeightmeasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     let dDay = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
-
-    //j'insere la date au bon format dans le formulaire
+      //j'insere la date au bon format dans le formulaire
     this.weightForm.get('measurementDate')?.setValue(dDay);
   }
 
@@ -85,8 +82,6 @@ export class WeightmeasComponent implements OnInit {
     };
     this.lineChartColors = [
       {
-        //borderColor: 'white',
-        // backgroundColor: 'rgba(255,0,0,0.3)',
         borderColor: 'rgba(255, 206, 86, 0.2)',
         backgroundColor: 'rgba(255,255,0,0.28)'
       },
@@ -98,7 +93,6 @@ export class WeightmeasComponent implements OnInit {
   };
 
   weightSave() {
-
 // Je créer un objet Weight  pour pouvoir sauvegarder les données saisies dans le formulaire dans la base
     this.weight = {
       id: null,
@@ -114,9 +108,6 @@ export class WeightmeasComponent implements OnInit {
 
 
     })
-  }
-  logOut() {
-    this.api.signOut();
   }
 
 }
